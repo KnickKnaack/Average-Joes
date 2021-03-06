@@ -73,5 +73,9 @@ function Fish:update(dt)
 end
 
 function Fish:render()
-    love.graphics.draw(gTextures['ClownFish'] , self.x, self.y)
+    if (self.dx <= 0) then
+        love.graphics.draw(gTextures['ClownFish'] , self.x, self.y)
+    else
+        love.graphics.draw(gTextures['ClownFish'] , self.x + self.width, self.y, 0, -1, 1)
+    end
 end
