@@ -27,7 +27,7 @@ function StartState:update(dt)
     end
 
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
-        StateMachine:change('viewing')
+        gStateMachine:change('viewing')
     end
 
 end
