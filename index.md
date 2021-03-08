@@ -1,13 +1,13 @@
 # Idle Aquarium
 
-[Problem Statement](https://knickknaack.github.io/Average-Joes/problem.md)
+[Problem Statement](https://knickknaack.github.io/Average-Joes/problem)
 
-[User Stories](https://knickknaack.github.io/Average-Joes/userstories.md)
+[User Stories](https://knickknaack.github.io/Average-Joes/userstories)
 
-[Requirements](https://knickknaack.github.io/Average-Joes/requirements.md)
+[Requirements](https://knickknaack.github.io/Average-Joes/requirements)
 
-[Architecture](https://knickknaack.github.io/Average-Joes/architecture.md)
+[Architecture](https://knickknaack.github.io/Average-Joes/architecture)
 
-[Design](https://knickknaack.github.io/Average-Joes/design.md)
+[Design](https://knickknaack.github.io/Average-Joes/design)
 
-[Test Report](https://knickknaack.github.io/Average-Joes/testreport.md)
+[Test Report](https://knickknaack.github.io/Average-Joes/testreport)
