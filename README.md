@@ -1,4 +1,3 @@
-# Average-Joes
-Dr. Toups' CS371 Group project for our game 'Idle Aquarium'
+# Average-Joes Project Website
 
-GitHub Pages Project Site: https://knickknaack.github.io/Average-Joes/
+pages link [here](https://knickknaack.github.io/Average-Joes/)
