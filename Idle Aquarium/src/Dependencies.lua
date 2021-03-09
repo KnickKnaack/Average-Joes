@@ -15,6 +15,9 @@ Class = require 'lib/class'
 -- a few global constants, centralized
 require 'src/constants'
 
+-- a Fish class
+require 'src/Fish'
+
 -- a basic StateMachine class which will allow us to transition to and from
 -- game states smoothly and avoid monolithic code in one file
 require 'src/StateMachine'
@@ -28,3 +31,4 @@ require 'src/Util'
 -- each frame, to avoid bulky code in main.lua
 require 'src/states/BaseState'
 require 'src/states/StartState'
+require 'src/states/ViewingState'

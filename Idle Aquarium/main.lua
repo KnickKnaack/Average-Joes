@@ -44,6 +44,7 @@ function love.load()
 
     -- initialize our nice-looking retro text fonts
     gFonts = {
+        ['Title'] = love.graphics.newFont('fonts/APOLLO.otf', 38),
         ['small'] = love.graphics.newFont('fonts/font.ttf', 8),
         ['medium'] = love.graphics.newFont('fonts/font.ttf', 16),
         ['large'] = love.graphics.newFont('fonts/font.ttf', 32)
@@ -52,7 +53,8 @@ function love.load()
 
     -- load up the graphics we'll be using throughout our states
     gTextures = {
-        ['background'] = love.graphics.newImage('graphics/background.png')
+        ['background'] = love.graphics.newImage('graphics/background.png'), 
+        ['ClownFish'] = love.graphics.newImage('graphics/ClownFish.png')
     }
 
     --[[
@@ -107,9 +109,10 @@ function love.load()
     -- 5. 'victory' (the current level is over, with a victory jingle)
     -- 6. 'game-over' (the player has lost; display score and allow restart)
     gStateMachine = StateMachine {
-        ['start'] = function() return StartState() end
+        ['start'] = function() return StartState() end,
+        ['viewing'] = function() return ViewingState() end
     }
-    gStateMachine:change('start')
+    gStateMachine:change('viewing')
 
     --[[
     -- play our music outside of all states and set it to looping

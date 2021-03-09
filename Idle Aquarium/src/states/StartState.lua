@@ -25,12 +25,17 @@ function StartState:update(dt)
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
     end
+
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+        StateMachine:change('viewing')
+    end
+
 end
 
 function StartState:render()
     -- title
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.setFont(gFonts['large'])
+    love.graphics.setFont(gFonts['Title'])
     love.graphics.printf("Idle Aquarium", 0, VIRTUAL_HEIGHT / 3,
         VIRTUAL_WIDTH, 'center')
     
