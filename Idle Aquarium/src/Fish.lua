@@ -7,8 +7,8 @@ function Fish:init()
     self.height = 11
 
     
-    self.dy = math.random(10, 20)
-    self.dx = math.random(50, 80)
+    self.dy = math.random(5, 10)
+    self.dx = math.random(10, 20)
     self.x = VIRTUAL_WIDTH / 2 - 2
     self.y = VIRTUAL_HEIGHT / 2 - 2
 end
@@ -47,7 +47,7 @@ function Fish:update(dt)
     self.y = self.y + self.dy * dt
 
     self.dy = self.dy + math.random(-0.5, 0.5)
-    self.dx = self.dx + math.random(-3, 3)
+    self.dx = self.dx + math.random(-1.5, 1.5)
 
     -- allow Fish to bounce off walls
     if self.x <= 0 then

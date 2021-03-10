@@ -108,12 +108,11 @@ function love.load()
     -- 4. 'play' (the ball is in play, bouncing between paddles)
     -- 5. 'victory' (the current level is over, with a victory jingle)
     -- 6. 'game-over' (the player has lost; display score and allow restart)
-    gStateMachine = StateMachine {
+    gStateMachine = StateMachine ({
         ['start'] = function() return StartState() end,
         ['viewing'] = function() return ViewingState() end
-    }
+    })
     gStateMachine:change('start')
-
     --[[
     -- play our music outside of all states and set it to looping
     gSounds['music']:play()
