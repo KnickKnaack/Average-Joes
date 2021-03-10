@@ -112,7 +112,7 @@ function love.load()
         ['start'] = function() return StartState() end,
         ['viewing'] = function() return ViewingState() end
     }
-    gStateMachine:change('viewing')
+    gStateMachine:change('start')
 
     --[[
     -- play our music outside of all states and set it to looping

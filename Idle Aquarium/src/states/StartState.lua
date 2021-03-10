@@ -26,8 +26,8 @@ function StartState:update(dt)
         love.event.quit()
     end
 
-    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
-        StateMachine:change('viewing')
+    if love.mouse.isDown(1) then
+        gStateMachine:change('viewing')
     end
 
 end
@@ -39,6 +39,9 @@ function StartState:render()
     love.graphics.printf("Idle Aquarium", 0, VIRTUAL_HEIGHT / 3,
         VIRTUAL_WIDTH, 'center')
     
+        love.graphics.setFont(gFonts['medium'])
+    love.graphics.printf("Click anywhere to play", 0, (VIRTUAL_HEIGHT / 3) * 2,
+        VIRTUAL_WIDTH, 'center')
 
     -- instructions
     --[[
