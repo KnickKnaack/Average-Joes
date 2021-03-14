@@ -12,7 +12,7 @@ function ViewingState:enter()
     self.FishInPlay = {}
     
     for i = 1, 7 do
-        table.insert(self.FishInPlay, Fish())
+        table.insert(self.FishInPlay, Fish(math.random(3)))
     end
 
 

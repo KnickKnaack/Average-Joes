@@ -1,11 +1,12 @@
 
 Fish = Class{}
 
-function Fish:init()
+function Fish:init(skin)
     -- simple positional and dimensional variables
     self.width = 22
     self.height = 11
 
+    self.skin = skin
     
     self.dy = math.random(5, 10)
     self.dx = math.random(10, 20)
@@ -73,9 +74,28 @@ function Fish:update(dt)
 end
 
 function Fish:render()
-    if (self.dx <= 0) then
-        love.graphics.draw(gTextures['ClownFish'] , self.x, self.y)
+    if (self.skin == 1) then
+
+        if (self.dx <= 0) then
+            love.graphics.draw(gTextures['ClownFish'] , self.x, self.y)
+        else
+            love.graphics.draw(gTextures['ClownFish'] , self.x + self.width, self.y, 0, -1, 1)
+        end
+    
+
+    elseif (self.skin == 2) then
+        if (self.dx <= 0) then
+            love.graphics.draw(gTextures['Blue'] , self.x, self.y)
+        else
+            love.graphics.draw(gTextures['Blue'] , self.x + self.width, self.y, 0, -1, 1)
+        end
+    
+
     else
-        love.graphics.draw(gTextures['ClownFish'] , self.x + self.width, self.y, 0, -1, 1)
+        if (self.dx <= 0) then
+            love.graphics.draw(gTextures['Sparkle'] , self.x, self.y)
+        else
+            love.graphics.draw(gTextures['Sparkle'] , self.x + self.width, self.y, 0, -1, 1)
+        end
     end
 end

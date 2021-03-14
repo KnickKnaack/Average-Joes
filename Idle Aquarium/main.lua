@@ -54,7 +54,9 @@ function love.load()
     -- load up the graphics we'll be using throughout our states
     gTextures = {
         ['background'] = love.graphics.newImage('graphics/background.png'), 
-        ['ClownFish'] = love.graphics.newImage('graphics/ClownFish.png')
+        ['ClownFish'] = love.graphics.newImage('graphics/ClownFish.png'),
+        ['Blue'] = love.graphics.newImage('graphics/Blue.png'),
+        ['Sparkle'] = love.graphics.newImage('graphics/Sparkle.png')
     }
 
     --[[
