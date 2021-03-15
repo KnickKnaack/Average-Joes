@@ -1,6 +1,6 @@
 # User Stories
 
-### 1: Have multipole tank to contain fish
+### 1: Have multiple tanks to contain fish
 As a try hard player, I would love to be able to have multiple fish tanks at a time to hold a more variety of fish.
 
 Elaboration: User should be able to have multiple tanks where they can keep their fish simultaneously. This would also means that there will be an increase in income. It is reasonable because the prices for resources are exponential. Moreover, having multiple fish tanks will make the game looks fresher and it is what players like me would love to experience.
