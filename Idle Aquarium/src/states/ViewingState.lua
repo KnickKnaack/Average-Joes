@@ -11,7 +11,7 @@ function ViewingState:enter()
     
     self.FishInPlay = {}
     
-    for i = 1, 7 do
+    for i = 1, 3 do
         table.insert(self.FishInPlay, Fish(math.random(3)))
     end
 
@@ -34,10 +34,19 @@ function ViewingState:update(dt)
 
     if (self.diff >= 1) then
         for k, f in pairs(self.FishInPlay) do
-            self.currCurrency = self.currCurrency + 1 * self.diff
+            self.currCurrency = self.currCurrency + f.currRate * self.diff
         end
         self.lastRecordedTime = os.time()
     end
+
+    if love.keyboard.wasPressed('=') then
+        table.insert(self.FishInPlay, Fish(math.random(3)))
+    end
+
+    if love.keyboard.wasPressed('-') then
+        table.remove(self.FishInPlay)
+    end
+
 end
 
 function ViewingState:render() 

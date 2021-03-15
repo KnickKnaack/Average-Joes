@@ -7,17 +7,16 @@ function Fish:init(skin)
     self.height = 11
 
     self.skin = skin
+
+    self.currRate = self.skin
     
-    self.dy = math.random(5, 10)
-    self.dx = math.random(10, 20)
-    self.x = VIRTUAL_WIDTH / 2 - 2
-    self.y = VIRTUAL_HEIGHT / 2 - 2
+    self.dy = math.random(-10, 10)
+    self.dx = math.random(-20, 20)
+    self.x = math.random(5, VIRTUAL_WIDTH - (self.width + 5))
+    self.y = math.random(5, VIRTUAL_HEIGHT - (self.height + 5))
 end
 
---[[
-    Expects an argument with a bounding box, be that a paddle or a brick,
-    and returns true if the bounding boxes of this and the argument overlap.
-]]
+-- if something needs collide logic with a fish
 function Fish:collides(target)
     -- first, check to see if the left edge of either is farther to the right
     -- than the right edge of the other
@@ -37,10 +36,10 @@ end
 
 
 function Fish:reset()
-    self.x = VIRTUAL_WIDTH / 2 - 2
-    self.y = VIRTUAL_HEIGHT / 2 - 2
-    self.dy = math.random(10, 20)
-    self.dx = math.random(50, 80)
+    self.dy = math.random(-10, 10)
+    self.dx = math.random(-20, 20)
+    self.x = math.random(5, VIRTUAL_WIDTH - (self.width + 5))
+    self.y = math.random(5, VIRTUAL_HEIGHT - (self.height + 5))
 end
 
 function Fish:update(dt)
