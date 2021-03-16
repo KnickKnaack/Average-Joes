@@ -36,3 +36,26 @@ Constraints: none
 Effort Estimation: 10 person-hours
 
 Acceptance Test: Develop and test different minigames and ensure they are entertaining and functional with no major bugs that will make the game unplayable.
+
+### 4: Quick Access
+As a full time student I want to be able to quickly check and progress the state of my game so that I can spend more time studying for my courses.
+
+Elaboration: Users should be able to spend minimal time on the functions of our game. Since this app is an Idle game, users will spend small amounts of time checking in on their game state, and making this time quicker will allow users to play the game when they have a minute or two. 
+
+Constraints: None
+
+Effort Estimation: 1 person hour
+
+Acceptance Test: Select random volunteers to mimic a “check in” on their game and make sure that the time is less than 2 min.
+
+### 5: Accurate Fish Depictions
+As a marine biologist I want the fish to accurately represent the species they claim to be so that I don’t have to be distracted by these misjudgments while I play the game.
+
+Elaboration: Unless there are made up species that have no coorelation to species of fish on our world, all fish should accurately represent the fish that we claim them to be through their art sprite and/or behaviour.
+
+Constraints: None
+
+Effort Estimation: 2 person hours
+
+Acceptance Test: For every Fish that is based on a real fish, ask volunteers if they believe the sprite accurately resembles the fish.
+
