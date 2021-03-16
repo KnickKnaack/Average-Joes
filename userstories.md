@@ -44,7 +44,7 @@ Elaboration: Users should be able to spend minimal time on the functions of our 
 
 Constraints: None
 
-Effort Estimation: 1 person hour
+Effort Estimation: 1 person-hour
 
 Acceptance Test: Select random volunteers to mimic a “check in” on their game and make sure that the time is less than 2 min.
 
@@ -55,7 +55,19 @@ Elaboration: Unless there are made up species that have no coorelation to specie
 
 Constraints: None
 
-Effort Estimation: 2 person hours
+Effort Estimation: 2 person-hours
 
 Acceptance Test: For every Fish that is based on a real fish, ask volunteers if they believe the sprite accurately resembles the fish.
+
+### 6: Have one free to choose item in Special Offers
+As a busy mom that can only get to play a few days a week, I would love to have the ability to choose which item that can show up in special offer so that I do not miss them on the day I cannot logon to the game.
+
+Elaboration: User should be able to choose one item slot in the special offer section. Not everyone is available to play every day to catch every special offer. So adding one free choice will help players like me get their desire fish or item without having to logon every day.
+
+Constraints: none
+
+Effort Estimation: 3 person-hours
+
+Acceptance Test: The one choice players can make definitely help with getting the item they want but it should only happen once a week. Instead of randomizing one item for each slot in the special offers section, we can make one that shows a variety of items to choose from. Test the list generator, test the price display, and test the date for the freedom of choice item to show up.
+
 
