@@ -26,6 +26,8 @@
 
 require 'src/Dependencies'
 
+mouse = {}
+
 --[[
     Called just once at the beginning of the game; used to set up
     game objects, variables, etc. and prepare the game world.
@@ -166,7 +168,7 @@ end
 
 --[[
     A custom function that will let us test for individual keystrokes outside
-    of the default `love.keypressed` callback, since we can't call that logic
+    of the default `love.keypressed` callback, since we can't call that   logic
     elsewhere by default.
 ]]
 function love.keyboard.wasPressed(key)
@@ -207,6 +209,23 @@ function love.draw()
     push:apply('end')
 end
 
+
+
+--[[
+    This method will allow us to test for indiviudal mouse presses
+    of the default love.mousepressed callback. We can pass the following
+    parameters:
+    - 'x', mouse x position in pixels
+    - 'y', mouse y position in pixels
+    - 'button', the button index that was pressed
+    - 'istouch', true if the mouse button press originated from
+      a touch screen
+    - 'presses' - number of times mouse clicked, simulates double-click
+      triple click, etc.
+]]
+function love.mousepressed()
+  love.audio.play(gSounds['score'])
+end -- end function love.mousepressed
 
 --[[
     Renders the current FPS.
