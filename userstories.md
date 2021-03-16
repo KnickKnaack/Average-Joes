@@ -3,7 +3,7 @@
 ### 1: Have multiple tanks to contain fish
 As a try hard player, I would love to be able to have multiple fish tanks at a time to hold a more variety of fish.
 
-Elaboration: User should be able to have multiple tanks where they can keep their fish simultaneously. This would also means that there will be an increase in income. It is reasonable because the prices for resources are exponential. Moreover, having multiple fish tanks will make the game looks fresher and it is what players like me would love to experience.
+Elaboration: User should be able to have multiple tanks where they can keep their fish simultaneously. This would also mean that there will be an increase in income. It is reasonable because the prices for resources are exponential. Moreover, having multiple fish tanks will make the game look and feel fresher and it is what players like me would love to experience.
 
 Constraints: none
 
@@ -16,20 +16,20 @@ Acceptance Test:
 * Test the arrow buttons, test the currencies generated in each tank.
 
 ### 2: Have different fish
-As a user, I want to have different fish available to use so there is variety in the tank.
+As a user, I want to have different fish available to use so there is large variety of different kinds of fish in the tank.
 
-Elaboration: Users should be able to obtain new and different fish through means of breeding or purchasing them to add new fish in their aquarium.
+Elaboration: Users should be able to obtain new and different fish through means of breeding or purchasing them to add new fish in their personal aquarium(s).
 
 Constraints: none
 
 Effort Estimation: 6 person-hours
 
-Acceptance Test: Perform tests on breeding that show that different fish can be obtained through different breeding combinations. Perform tests that the user can purchase new fish in the shop.
+Acceptance Test: Perform tests on breeding that show that different fish can be obtained through different breeding combinations. Will need to establish a functioning breeding system that may be accessable by the user. Then, prform tests if the user can get to breeding screen and breed to of thier own fish successfully. The user must also be able to purchase a new breed of fish with currency collected over time of play from in game stores purchasing system. Perform tests if the user can purchase new fish in the shop.
 
 ### 3: Be able to pass the time
 As someone with a lot of free time, I want an interactive game so that I can pass the time.
 
-Elaboration: The game should include several minigames that the user can play to obtain currency and items. The minigames will give the player something to do beside just sitting and waiting for the aquarium to generate money.
+Elaboration: The game should include several minigames that the user can play to obtain currency and items. The minigames will give the player something to do beside just sitting and waiting for the aquarium to generate money. This is to achieve the goal of playability.
 
 Constraints: none
 
@@ -40,7 +40,7 @@ Acceptance Test: Develop and test different minigames and ensure they are entert
 ### 4: Quick Access
 As a full time student I want to be able to quickly check and progress the state of my game so that I can spend more time studying for my courses.
 
-Elaboration: Users should be able to spend minimal time on the functions of our game. Since this app is an Idle game, users will spend small amounts of time checking in on their game state, and making this time quicker will allow users to play the game when they have a minute or two. 
+Elaboration: Users should be able to spend minimal time on the functions of our game. Since this app is an idle game, users will spend small amounts of time checking in on their game state, and making this time quicker will allow users to play the game when they have a minute or two. 
 
 Constraints: None
 
@@ -70,4 +70,13 @@ Effort Estimation: 3 person-hours
 
 Acceptance Test: The one choice players can make definitely help with getting the item they want but it should only happen once a week. Instead of randomizing one item for each slot in the special offers section, we can make one that shows a variety of items to choose from. Test the list generator, test the price display, and test the date for the freedom of choice item to show up.
 
+## 7: Suitable for Younger Audiences
+As a father I sometimes give my younger child my tablet or phone to play with. I would like the safe of mind knowing this game is suitable for them to play if they choose to access it.
 
+Elaboration: A user of any age should be able to plaly our game with no adult content or mature material.
+
+Constraints: none
+
+Effort Estimation: 1 person-hours
+
+Acceptance Test: After completion of game, tester will thorougly navigate through each and every menu, as well as allowing the game to idly play, and make sure this game is suitable for play by all age groups. This Will be achieved through use of positive and non mature game/menu music as well as realistic positive fish and backgrounds. Mini games and play will also be suitable for all ages and disclude any mature material.
