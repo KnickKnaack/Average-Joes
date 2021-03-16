@@ -39,7 +39,7 @@ function StartState:render()
     love.graphics.printf("Idle Aquarium", 0, VIRTUAL_HEIGHT / 3,
         VIRTUAL_WIDTH, 'center')
     
-        love.graphics.setFont(gFonts['medium'])
+    love.graphics.setFont(gFonts['medium'])
     love.graphics.printf("Click anywhere to play", 0, (VIRTUAL_HEIGHT / 3) * 2,
         VIRTUAL_WIDTH, 'center')
 

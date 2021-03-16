@@ -1,22 +1,22 @@
 
 Fish = Class{}
 
-function Fish:init()
+function Fish:init(skin)
     -- simple positional and dimensional variables
     self.width = 22
     self.height = 11
 
+    self.skin = skin
+
+    self.currRate = self.skin
     
-    self.dy = math.random(5, 10)
-    self.dx = math.random(10, 20)
-    self.x = VIRTUAL_WIDTH / 2 - 2
-    self.y = VIRTUAL_HEIGHT / 2 - 2
+    self.dy = math.random(-10, 10)
+    self.dx = math.random(-20, 20)
+    self.x = math.random(5, VIRTUAL_WIDTH - (self.width + 5))
+    self.y = math.random(5, VIRTUAL_HEIGHT - (self.height + 5))
 end
 
---[[
-    Expects an argument with a bounding box, be that a paddle or a brick,
-    and returns true if the bounding boxes of this and the argument overlap.
-]]
+-- if something needs collide logic with a fish
 function Fish:collides(target)
     -- first, check to see if the left edge of either is farther to the right
     -- than the right edge of the other
@@ -36,10 +36,10 @@ end
 
 
 function Fish:reset()
-    self.x = VIRTUAL_WIDTH / 2 - 2
-    self.y = VIRTUAL_HEIGHT / 2 - 2
-    self.dy = math.random(10, 20)
-    self.dx = math.random(50, 80)
+    self.dy = math.random(-10, 10)
+    self.dx = math.random(-20, 20)
+    self.x = math.random(5, VIRTUAL_WIDTH - (self.width + 5))
+    self.y = math.random(5, VIRTUAL_HEIGHT - (self.height + 5))
 end
 
 function Fish:update(dt)
@@ -73,9 +73,28 @@ function Fish:update(dt)
 end
 
 function Fish:render()
-    if (self.dx <= 0) then
-        love.graphics.draw(gTextures['ClownFish'] , self.x, self.y)
+    if (self.skin == 1) then
+
+        if (self.dx <= 0) then
+            love.graphics.draw(gTextures['ClownFish'] , self.x, self.y)
+        else
+            love.graphics.draw(gTextures['ClownFish'] , self.x + self.width, self.y, 0, -1, 1)
+        end
+    
+
+    elseif (self.skin == 2) then
+        if (self.dx <= 0) then
+            love.graphics.draw(gTextures['Blue'] , self.x, self.y)
+        else
+            love.graphics.draw(gTextures['Blue'] , self.x + self.width, self.y, 0, -1, 1)
+        end
+    
+
     else
-        love.graphics.draw(gTextures['ClownFish'] , self.x + self.width, self.y, 0, -1, 1)
+        if (self.dx <= 0) then
+            love.graphics.draw(gTextures['Sparkle'] , self.x, self.y)
+        else
+            love.graphics.draw(gTextures['Sparkle'] , self.x + self.width, self.y, 0, -1, 1)
+        end
     end
 end
