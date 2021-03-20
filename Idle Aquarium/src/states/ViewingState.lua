@@ -60,4 +60,8 @@ function ViewingState:render()
     love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
         VIRTUAL_WIDTH, 'left')
 
+    love.graphics.setFont(gFonts['medium'])
+    love.graphics.printf("^", VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT - 20,
+        VIRTUAL_WIDTH, 'left')
+
 end
