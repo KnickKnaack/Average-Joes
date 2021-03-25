@@ -70,7 +70,7 @@ Effort Estimation: 3 person-hours
 
 Acceptance Test: The one choice players can make definitely help with getting the item they want but it should only happen once a week. Instead of randomizing one item for each slot in the special offers section, we can make one that shows a variety of items to choose from. Test the list generator, test the price display, and test the date for the freedom of choice item to show up.
 
-## 7: Suitable for Younger Audiences
+### 7: Suitable for Younger Audiences
 As a father I sometimes give my younger child my tablet or phone to play with. I would like the safe of mind knowing this game is suitable for them to play if they choose to access it.
 
 Elaboration: A user of any age should be able to play our game with no adult content or mature material.
@@ -80,3 +80,14 @@ Constraints: none
 Effort Estimation: 1 person-hours
 
 Acceptance Test: After completion of game, tester will thoroughly navigate through each and every menu, as well as allowing the game to idly play, and make sure this game is suitable for play by all age groups. This Will be achieved through use of positive and non mature game/menu music as well as realistic positive fish and backgrounds. Mini games and play will also be suitable for all ages and disclude any mature material.
+
+### 8: More Prizes for Events
+As a complete F2P player that needs to save up my resources to get the items I desire, I would love to have rewards from mini game outside from just gems.
+
+Elaboration: User would be able to acquire a random species of fish from different rarities depending on the difficulty of the events.
+
+Constraints: none
+
+Effort Estimation: 1 person-hours
+
+Acceptance Test: A randomizer for the winning prize. Prizes display state.
