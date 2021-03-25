@@ -8,23 +8,19 @@ function ViewingState:init()
 end
 
 function ViewingState:enter(params)
-    if params.currency == 0 then
-        self.FishInPlay = {}
-        
-        for i = 1, 3 do
-            table.insert(self.FishInPlay, Fish(math.random(3)))
-        end
 
-        self.currCurrency = 0
-    else
-        self.FishInPlay = params.fishtable
+    self.currCurrency = params.currency
+    
+    self.FishInPlay = params.fishtable
+    self.lastRecordedTime = params.lastRecordedTime
 
-        -- CHANGE params.lastRecordedTime WHEN FILE MANIP IS WORKING --
-        self.diff = os.time() - params.lastRecordedTime
-        for k, f in pairs(self.FishInPlay) do
-            self.currCurrency = params.currency + f.currRate * self.diff
-        end
+    --[[
+    -- CHANGE params.lastRecordedTime WHEN FILE MANIP IS WORKING --
+    self.diff = os.time() - params.lastRecordedTime
+    for k, f in pairs(self.FishInPlay) do
+        self.currCurrency = params.currency + f.currRate * self.diff
     end
+    --]]
 
 
     self.lastRecordedTime = os.time()
