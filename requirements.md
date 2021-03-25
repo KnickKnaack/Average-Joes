@@ -13,7 +13,8 @@ Any important terms that are required to understand your project documents.
 
 ### 1.4 References
 Any external references needed to understand your project documents. Use URL links if possible
-
+<br/><br/>
+<br/><br/>
 
 
 ## 2. General Description of Product
@@ -36,10 +37,14 @@ Describe any constraints on your system.
 
 ### 2.6 Assumptions and Dependencies
 Does your system depend on external software packages? System assumptions? If so, describe them.
+<br/><br/>
+<br/><br/>
+
 
 ## 3. Functional Requirements
 In a standard requirements document, you would have a LONG list of functional requirements here. You should put a link to your user story page here.
-
+<br/><br/>
+<br/><br/>
 
 
 ## 4. System and Non-functional Requirements
@@ -58,7 +63,8 @@ What quality expectations do your users have? Is your system life-critical? Desc
 
 ### 4.5 Other Requirements
 Anything else you need to say. Use item numbers NF.4.5.X.
-
+<br/><br/>
+<br/><br/>
 
 
 ## 5. Appendices
