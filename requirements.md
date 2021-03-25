@@ -6,13 +6,14 @@
 A one-paragraph description of your product's purpose
 
 ### 1.2 Scope of Product  
-A short description of your product's scope (what it includes and what it does not include). Part of your problem statement might be useful here, but focus on the scope of the product.  
+Our game will include a shop where players can buy certain fish, decorations and environments; a breedign area where players can create new exotic fish through breeding others; 
   
 ### 1.3 Acronyms, Abbreviations, Definitions  
-Any important terms that are required to understand your project documents.  
+* "Coins" Refer to the currency that the player can use within the game
+* 
 
 ### 1.4 References
-Any external references needed to understand your project documents. Use URL links if possible
+I don't think references are needed but you guys can decide
 <br/><br/>
 <br/><br/>
 
@@ -21,28 +22,29 @@ Any external references needed to understand your project documents. Use URL lin
 This section contains a longer but not exhaustive description of your product.
 
 ### 2.1 Context of Product  
-Context or environment that your product will be in.
+The player will play the game in any cases that they want to take a break from work or life. They could be anywhere that the game can be run; either on a laptop or desktop.
 
 ### 2.2 Domain Model with Description  
-Display and describe your domain model.
+Display and describe your domain model. <- IDEK what this is
 
 ### 2.3 Product Functions (general)  
-Basic overview of the capabilities of your product. This is not your list of functional requirements, but an overview. Part of your problem statement might be good here.  
+Basic overview of the capabilities of your product. This is not your list of functional requirements, but an overview. Part of your problem statement might be good here.  <- IDK what to put here either
 
 ### 2.4 User Characteristics and Expectations  
-Describe your users and their abilities.
+Our players will have minimal requirements to play our game. Expectations are that the player can read and comprehend the descriptions within our game. Other than
+this, player can do what they please.
 
 ### 2.5 Constraints
-Describe any constraints on your system.
+Currently our game only runs on a desktop operating system. 
 
 ### 2.6 Assumptions and Dependencies
-Does your system depend on external software packages? System assumptions? If so, describe them.
+Our program runs on the LOVE framework for lua. it can be downloaded [here](https://love2d.org/)
 <br/><br/>
 <br/><br/>
 
 
 ## 3. Functional Requirements
-In a standard requirements document, you would have a LONG list of functional requirements here. You should put a link to your user story page here.
+Here is a link to our [User Sories Page](https://knickknaack.github.io/Average-Joes/userstories)
 <br/><br/>
 <br/><br/>
 
@@ -53,7 +55,7 @@ In a standard requirements document, you would have a LONG list of functional re
 Describe what kinds of interfaces your product has, and what they do. Then list specific requirements using item numbers as NF.4.1.X.
 
 ### 4.2 Performance Requirements
-Describe your product's performance needs. Then list specific requirements using item numbers as NF.4.2.X.
+Any performance needs are explained in section 2.5
 
 ### 4.3 Design Constraints
 Describe external requirements that will constrain your design choices. Then list specific requirements using item numbers as NF.4.3.X.
