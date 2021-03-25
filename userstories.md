@@ -40,7 +40,7 @@ Acceptance Test: Develop and test different minigames and ensure they are entert
 ### 4: Quick Access
 As a full time student I want to be able to quickly check and progress the state of my game so that I can spend more time studying for my courses.
 
-Elaboration: Users should be able to spend minimal time on the functions of our game. Since this app is an idle game, users will spend small amounts of time checking in on their game state, and making this time quicker will allow users to play the game when they have a minute or two. 
+Elaboration: Users should be able to spend minimal time on the functions of our game. Since this app is an idle game, users will spend small amounts of time checking in on their game state, and making this time quicker will allow users to play the game when they have a minute or two.
 
 Constraints: None
 
@@ -73,10 +73,10 @@ Acceptance Test: The one choice players can make definitely help with getting th
 ## 7: Suitable for Younger Audiences
 As a father I sometimes give my younger child my tablet or phone to play with. I would like the safe of mind knowing this game is suitable for them to play if they choose to access it.
 
-Elaboration: A user of any age should be able to plaly our game with no adult content or mature material.
+Elaboration: A user of any age should be able to play our game with no adult content or mature material.
 
 Constraints: none
 
 Effort Estimation: 1 person-hours
 
-Acceptance Test: After completion of game, tester will thorougly navigate through each and every menu, as well as allowing the game to idly play, and make sure this game is suitable for play by all age groups. This Will be achieved through use of positive and non mature game/menu music as well as realistic positive fish and backgrounds. Mini games and play will also be suitable for all ages and disclude any mature material.
+Acceptance Test: After completion of game, tester will thoroughly navigate through each and every menu, as well as allowing the game to idly play, and make sure this game is suitable for play by all age groups. This Will be achieved through use of positive and non mature game/menu music as well as realistic positive fish and backgrounds. Mini games and play will also be suitable for all ages and disclude any mature material.

@@ -2,7 +2,7 @@
 
 
 ## Our Mission:
-We are AverageJoes and creating a fun and relaxing Idle game, Idle Aquarium! This is indented for people to distract themselves from the harder part of actually living! This will be in the lua language under the open source framework LOVE. The main concept of our game is to allow players to start out with an empty tank or ocean environment, and be able to collect, breed, and cherish fish of all shapes, sizes, colors and species. As they collect these Fish, they will earn a currency which can then be used to buy more fish and special decorations to make their environment look nice and pretty. All of these will be flushed out in detail in the sections below.
+We are AverageJoes and creating a fun and relaxing Idle game, Idle Aquarium! This is intended for people to distract themselves from the harder part of actually living! This will be in the lua language under the open source framework LOVE. The main concept of our game is to allow players to start out with an empty tank or ocean environment, and be able to collect, breed, and cherish fish of all shapes, sizes, colors and species. As they collect these Fish, they will earn a currency which can then be used to buy more fish and special decorations to make their environment look nice and pretty. All of these will be flushed out in detail in the sections below.
 
 
 ## Viewing Area:
