@@ -27,6 +27,7 @@
 require 'src/Dependencies'
 
 mouse = {}
+fish = {'src/Fish'}
 
 --[[
     Called just once at the beginning of the game; used to set up
@@ -85,6 +86,8 @@ function love.load()
     -- call each entry's `play` method
     gSounds = {
         ['paddle-hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),
+        ['play-music'] =love.audio.newSource('sounds/play_music.wav', 'static'),
+        ['menu-music'] =love.audio.newSource('sounds/menu_music.wav', 'static'),
         ['score'] = love.audio.newSource('sounds/score.wav', 'static'),
         ['wall-hit'] = love.audio.newSource('sounds/wall_hit.wav', 'static'),
         ['confirm'] = love.audio.newSource('sounds/confirm.wav', 'static'),
@@ -113,22 +116,26 @@ function love.load()
     -- 5. 'victory' (the current level is over, with a victory jingle)
     -- 6. 'game-over' (the player has lost; display score and allow restart)
     gStateMachine = StateMachine ({
-        ['start'] = function() return StartState() end,
-        ['viewing'] = function() return ViewingState() end
+        ['start'] = function()
+          love.audio.stop()
+          gSounds['menu-music']:play()
+          gSounds['menu-music']:setLooping(true)
+          return StartState()
+        end,
+        ['viewing'] = function()
+          love.audio.stop()
+          gSounds['play-music']:play()
+          gSounds['play-music']:setLooping(true)
+          return ViewingState()
+        end
     })
     gStateMachine:change('start')
-    --[[
-    -- play our music outside of all states and set it to looping
-    gSounds['music']:play()
-    gSounds['music']:setLooping(true)
-    ]]
     
     -- a table we'll use to keep track of which keys have been pressed this
     -- frame, to get around the fact that LÖVE's default callback won't let us
     -- test for input from within other functions
     love.keyboard.keysPressed = {}
 end
-
 --[[
     Called whenever we change the dimensions of our window, as by dragging
     out its bottom corner, for example. In this case, we only need to worry
@@ -223,8 +230,9 @@ end
     - 'presses' - number of times mouse clicked, simulates double-click
       triple click, etc.
 ]]
-function love.mousepressed()
-  love.audio.play(gSounds['score'])
+function love.mousepressed(x, y, button)
+  if button == "1" and x == fish.x and y == fish.y then love.audio.play(gSounds['brick-hit-1'])
+  end
 end -- end function love.mousepressed
 
 --[[
