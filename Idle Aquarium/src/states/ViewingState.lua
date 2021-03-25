@@ -7,17 +7,26 @@ ViewingState = Class{__includes = BaseState}
 function ViewingState:init() 
 end
 
-function ViewingState:enter()
-    
-    self.FishInPlay = {}
-    
-    for i = 1, 3 do
-        table.insert(self.FishInPlay, Fish(math.random(3)))
+function ViewingState:enter(params)
+    if params.currency == 0 then
+        self.FishInPlay = {}
+        
+        for i = 1, 3 do
+            table.insert(self.FishInPlay, Fish(math.random(3)))
+        end
+
+        self.currCurrency = 0
+    else
+        self.FishInPlay = params.fishtable
+
+        -- CHANGE params.lastRecordedTime WHEN FILE MANIP IS WORKING --
+        self.diff = os.time() - params.lastRecordedTime
+        for k, f in pairs(self.FishInPlay) do
+            self.currCurrency = params.currency + f.currRate * self.diff
+        end
     end
 
 
-
-    self.currCurrency = 0
     self.lastRecordedTime = os.time()
 
 end
@@ -45,6 +54,14 @@ function ViewingState:update(dt)
 
     if love.keyboard.wasPressed('-') then
         table.remove(self.FishInPlay)
+    end
+
+    if love.keyboard.wasPressed('s') then
+        params = {}
+        params.fishtable = self.FishInPlay
+        params.currency = self.currCurrency
+        params.lastRecordedTime = os.time()
+        gStateMachine:change('shop', params)
     end
 
 end

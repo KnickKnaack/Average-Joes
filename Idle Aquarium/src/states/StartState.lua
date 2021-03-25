@@ -27,7 +27,11 @@ function StartState:update(dt)
     end
 
     if love.mouse.isDown(1) then
-        gStateMachine:change('viewing')
+        params = {}
+        params.fishtable = {}
+        params.currency = 0
+        params.lastRecordedTime = 0
+        gStateMachine:change('viewing', params)
     end
 
 end

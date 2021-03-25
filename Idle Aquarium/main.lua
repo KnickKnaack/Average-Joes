@@ -112,7 +112,8 @@ function love.load()
     -- 6. 'game-over' (the player has lost; display score and allow restart)
     gStateMachine = StateMachine ({
         ['start'] = function() return StartState() end,
-        ['viewing'] = function() return ViewingState() end
+        ['viewing'] = function() return ViewingState() end,
+        ['shop'] = function() return ShopState() end
     })
     gStateMachine:change('start')
     --[[
