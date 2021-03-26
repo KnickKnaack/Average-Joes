@@ -91,3 +91,17 @@ Constraints: none
 Effort Estimation: 1 person-hours
 
 Acceptance Test: A randomizer for the winning prize. Prizes display state.
+
+### 9: Interaction With Game
+When I play this idle game I want to be able to interact with it as well. I understand that an idle game usually
+is played in an "idle" state, where you just let it sit and as time progresses you earn or complete rewards. But with
+this game I would also like to be able to tap on the fish to speed up my coin collection speed, giving me more
+interaction with the game.
+
+Elaboration: User would like to have touch/mouse input for interacting with the game.
+
+Constraints: Mouse click or button press as well as touch input must be accepted.
+
+Effor Estimation: 2 person-hours
+
+Acceptance Test: Touch input as well as a mouse click will be read and accepted then return some kind of visual feedback to user. Feedback could also include audio as well as some kind of animation.
