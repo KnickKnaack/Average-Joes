@@ -244,3 +244,30 @@ function displayFPS()
     love.graphics.setColor(0, 1, 0, 1)
     love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 5, 5)
 end
+
+
+function readFishInPlay()
+    fishToReturn = {}
+    love.filesystem.setIdentity('Idle Aquarium')
+
+    if (not love.filesystem.getInfo('FishInPlay.csv')) then
+        start = ''
+        for i = 1, 3 do
+            start = start .. math.random(3) .. ','
+        end
+
+        love.filesystem.write('FishInPlay.csv', start)
+    end
+
+    
+    File = love.filesystem.read('FishInPlay.csv')
+    nextSec = 0
+    while (string.sub(File, nextSec, nextSec + 1) == ',') do
+        table.insert(fishToReturn, Fish(tonumber(string.sub(line, nextSec + 1, nextSec + 2))))
+        nextSec = nextSec + 2
+    end
+
+    table.insert(fishToReturn, Fish(3))
+
+    return fishToReturn
+end

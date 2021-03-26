@@ -18,6 +18,7 @@
 StartState = Class{__includes = BaseState}
 
 function StartState:enter(params)
+    self.fishtable = readFishInPlay()
 end
 
 function StartState:update(dt)
@@ -27,7 +28,11 @@ function StartState:update(dt)
     end
 
     if love.mouse.isDown(1) then
-        gStateMachine:change('viewing')
+        params = {}
+        params.fishtable = self.fishtable
+        params.currency = 0
+        params.lastRecordedTime = 0
+        gStateMachine:change('viewing', params)
     end
 
 end
@@ -43,28 +48,6 @@ function StartState:render()
     love.graphics.printf("Click anywhere to play", 0, (VIRTUAL_HEIGHT / 3) * 2,
         VIRTUAL_WIDTH, 'center')
 
-    -- instructions
-    --[[
-    love.graphics.setFont(gFonts['medium'])
 
-    -- if we're highlighting 1, render that option blue
-    if highlighted == 1 then
-        love.graphics.setColor(103/255, 1, 1, 1)
-    end
-    love.graphics.printf("START", 0, VIRTUAL_HEIGHT / 2 + 70,
-        VIRTUAL_WIDTH, 'center')
-
-    -- reset the color
-    love.graphics.setColor(1, 1, 1, 1)
-
-    -- render option 2 blue if we're highlighting that one
-    if highlighted == 2 then
-        love.graphics.setColor(103/255, 1, 1, 1)
-    end
-    love.graphics.printf("HIGH SCORES", 0, VIRTUAL_HEIGHT / 2 + 90,
-        VIRTUAL_WIDTH, 'center')
-
-    -- reset the color
-    love.graphics.setColor(1, 1, 1, 1)
-    ]]
+    
 end
