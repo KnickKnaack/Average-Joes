@@ -105,3 +105,14 @@ Constraints: Mouse click or button press as well as touch input must be accepted
 Effor Estimation: 2 person-hours
 
 Acceptance Test: Touch input as well as a mouse click will be read and accepted then return some kind of visual feedback to user. Feedback could also include audio as well as some kind of animation.
+
+### 10: Requires little thought
+As someone who works full time, I want to be able to come home and turn off my brain for a while with a simple game. It would be nice to play a game that requires little effort so I can get away for a while.
+
+Elaboration: The game should be simple to use and not require a large amount of effort from the user.
+
+Constraints: None
+
+Effort Estimation: 5 person-hours
+
+Acceptance Test: Once a working game is developed, we will provide a beta version to game testers to ensure the game functions and mechanics are simple, as well as easy to pick up by someone who has never seen the game before.
