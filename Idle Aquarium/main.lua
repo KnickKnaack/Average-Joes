@@ -127,7 +127,8 @@ function love.load()
           gSounds['play-music']:play()
           gSounds['play-music']:setLooping(true)
           return ViewingState()
-        end
+        end,
+        ['shop'] = function() return ShopState() end
     })
     gStateMachine:change('start')
     
