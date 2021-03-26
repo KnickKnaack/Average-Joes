@@ -100,7 +100,7 @@ Elaboration: User would like to have touch/mouse input for interacting with the 
 
 Constraints: Mouse click or button press as well as touch input must be accepted.
 
-t Estimation: 2 person-hours
+Effort Estimation: 2 person-hours
 
 Acceptance Test: Touch input as well as a mouse click will be read and accepted then return some kind of visual feedback to user. Feedback could also include audio as well as some kind of animation.
 
