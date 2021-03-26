@@ -24,6 +24,7 @@ This section contains a longer but not exhaustive description of your product.
 The player will play the game in any cases that they want to take a break from work or life. They could be anywhere that the game can be run; either on a laptop or desktop.
 
 ### 2.2 Domain Model with Description  
+![Idle Aquarium Domain Model](https://knickknaack.github.io/Average-Joes/DomainModel.png)
 Users will transfer between states of the game. these states include the viewing area, breeding area, shop, and minigames. Data is passed between states (ie.the fish to render when transfering back to the viewing state) to keep the game seamless.
 
 ### 2.3 Product Functions (general)  
