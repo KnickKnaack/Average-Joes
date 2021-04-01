@@ -60,6 +60,23 @@ function ViewingState:update(dt)
         gStateMachine:change('shop', params)
     end
 
+    if love.keyboard.wasPressed('o') then
+        params = {}
+        params.fishtable = self.FishInPlay
+        params.currency = self.currCurrency
+        params.lastRecordedTime = os.time()
+        params.callingState = 'viewing'
+        gStateMachine:change('settings', params)
+    end
+
+    if love.keyboard.wasPressed('escape') then
+        params = {}
+        params.fishtable = self.FishInPlay
+        params.currency = self.currCurrency
+        params.lastRecordedTime = os.time()
+        gStateMachine:change('start', params)
+    end
+
 end
 
 function ViewingState:render() 

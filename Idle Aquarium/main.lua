@@ -100,7 +100,6 @@ function love.load()
         ['recover'] = love.audio.newSource('sounds/recover.wav', 'static'),
         ['high-score'] = love.audio.newSource('sounds/high_score.wav', 'static'),
         ['pause'] = love.audio.newSource('sounds/pause.wav', 'static'),
-
         ['music'] = love.audio.newSource('sounds/music.wav', 'static')
     }
 
@@ -117,6 +116,7 @@ function love.load()
     -- 6. 'game-over' (the player has lost; display score and allow restart)
     gStateMachine = StateMachine ({
         ['start'] = function()
+          love.audio.setVolume(0.5)
           love.audio.stop()
           gSounds['menu-music']:play()
           gSounds['menu-music']:setLooping(true)
@@ -128,7 +128,8 @@ function love.load()
           gSounds['play-music']:setLooping(true)
           return ViewingState()
         end,
-        ['shop'] = function() return ShopState() end
+        ['shop'] = function() return ShopState() end,
+        ['settings'] = function() return SettingsState() end
     })
     gStateMachine:change('start')
     

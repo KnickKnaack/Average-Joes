@@ -35,6 +35,12 @@ function StartState:update(dt)
         gStateMachine:change('viewing', params)
     end
 
+    if love.keyboard.wasPressed('o') then
+        params = {}
+        params.callingState = 'start'
+        gStateMachine:change('settings', params)
+    end
+
 end
 
 function StartState:render()
