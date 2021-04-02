@@ -248,28 +248,51 @@ function displayFPS()
 end
 
 
-function readFishInPlay()
+function getFishFromFile()
     fishToReturn = {}
     love.filesystem.setIdentity('Idle Aquarium')
 
     if (not love.filesystem.getInfo('FishInPlay.csv')) then
         start = ''
         for i = 1, 3 do
-            start = start .. math.random(3) .. ','
+            start = start .. math.random(3) .. ',\n'
         end
 
         love.filesystem.write('FishInPlay.csv', start)
     end
 
-    
-    File = love.filesystem.read('FishInPlay.csv')
-    nextSec = 0
-    while (string.sub(File, nextSec, nextSec + 1) == ',') do
-        table.insert(fishToReturn, Fish(tonumber(string.sub(line, nextSec + 1, nextSec + 2))))
-        nextSec = nextSec + 2
-    end
 
-    table.insert(fishToReturn, Fish(3))
+    
+    for line in love.filesystem.lines('FishInPlay.csv') do
+        indexOfLast = 0
+        indexOfNext = string.find(line, ",")
+        FishData = {}
+
+        while (not (indexOfNext == nil)) do
+            table.insert(FishData, string.sub(line, indexOfLast + 1, indexOfNext - 1))
+
+            indexOfLast = indexOfNext
+            indexOfNext = string.find(line, ",", indexOfLast + 1)
+
+        table.insert(fishToReturn, Fish(FishData))
+    
+        end
+    end
+    
+    
+
+
+    ---File = love.filesystem.read('FishInPlay.csv')
+    --nextSec = 0
+    --while (string.sub(File, nextSec, nextSec + 1) == ',') do
+    --    table.insert(fishToReturn, Fish(tonumber(string.sub(line, nextSec + 1, nextSec + 2))))
+    -- 
+    
 
     return fishToReturn
 end
+
+
+--function writeFishInFile()
+
+--end
