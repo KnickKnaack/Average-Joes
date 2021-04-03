@@ -22,9 +22,6 @@ function ViewingState:enter(params)
     end
     --]]
 
-
-    self.lastRecordedTime = os.time()
-
 end
 
 function ViewingState:exit() 
@@ -45,7 +42,7 @@ function ViewingState:update(dt)
     end
 
     if love.keyboard.wasPressed('=') then
-        table.insert(self.FishInPlay, Fish(math.random(3)))
+        table.insert(self.FishInPlay, Fish({math.random(3)}))
     end
 
     if love.keyboard.wasPressed('-') then
@@ -56,8 +53,25 @@ function ViewingState:update(dt)
         params = {}
         params.fishtable = self.FishInPlay
         params.currency = self.currCurrency
-        params.lastRecordedTime = os.time()
+        params.lastRecordedTime = self.lastRecordedTime
         gStateMachine:change('shop', params)
+    end
+
+    if love.keyboard.wasPressed('o') then
+        params = {}
+        params.fishtable = self.FishInPlay
+        params.currency = self.currCurrency
+        params.lastRecordedTime = os.time()
+        params.callingState = 'viewing'
+        gStateMachine:change('settings', params)
+    end
+
+    if love.keyboard.wasPressed('escape') then
+        params = {}
+        params.fishtable = self.FishInPlay
+        params.currency = self.currCurrency
+        params.lastRecordedTime = os.time()
+        gStateMachine:change('start', params)
     end
 
 end
@@ -70,11 +84,11 @@ function ViewingState:render()
     
 
     love.graphics.setFont(gFonts['medium'])
-    love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
-        VIRTUAL_WIDTH, 'left')
 
-    love.graphics.setFont(gFonts['medium'])
-    love.graphics.printf("^", VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT - 20,
+    -- love.graphics.printf("Fish Skin: " .. self.FishInPlay[1].skin, 5, VIRTUAL_HEIGHT - 100,
+    --    VIRTUAL_WIDTH, 'left')
+
+    love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
         VIRTUAL_WIDTH, 'left')
 
 end

@@ -1,12 +1,12 @@
 
 Fish = Class{}
 
-function Fish:init(skin)
+function Fish:init(FishData)
     -- simple positional and dimensional variables
     self.width = 22
     self.height = 11
 
-    self.skin = skin
+    self.skin = tonumber(FishData[1])
 
     self.currRate = self.skin
     

@@ -8,6 +8,16 @@ function ShopState:enter(params)
 end
 
 function ShopState:update(dt)
+
+    if love.keyboard.wasPressed('o') then
+        params = {}
+        params.fishtable = self.FishInPlay
+        params.currency = self.currCurrency
+        params.lastRecordedTime = self.lastRecordedTime
+        params.callingState = 'shop'
+        gStateMachine:change('settings', params)
+    end
+
     if love.keyboard.wasPressed('escape') then
         params = {}
         params.fishtable = self.FishInPlay

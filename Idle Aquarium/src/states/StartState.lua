@@ -18,7 +18,7 @@
 StartState = Class{__includes = BaseState}
 
 function StartState:enter(params)
-    self.fishtable = readFishInPlay()
+    self.fishtable = getFishFromFile()
 end
 
 function StartState:update(dt)
@@ -31,8 +31,14 @@ function StartState:update(dt)
         params = {}
         params.fishtable = self.fishtable
         params.currency = 0
-        params.lastRecordedTime = 0
+        params.lastRecordedTime = os.time()
         gStateMachine:change('viewing', params)
+    end
+
+    if love.keyboard.wasPressed('o') then
+        params = {}
+        params.callingState = 'start'
+        gStateMachine:change('settings', params)
     end
 
 end
