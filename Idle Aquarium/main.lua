@@ -137,6 +137,12 @@ function love.load()
     -- frame, to get around the fact that LÖVE's default callback won't let us
     -- test for input from within other functions
     love.keyboard.keysPressed = {}
+
+
+    --File folder to store data files in 
+    love.filesystem.setIdentity('Idle Aquarium')
+
+
 end
 --[[
     Called whenever we change the dimensions of our window, as by dragging
@@ -250,7 +256,6 @@ end
 
 function getFishFromFile()
     fishToReturn = {}
-    love.filesystem.setIdentity('Idle Aquarium')
 
     if (not love.filesystem.getInfo('FishInPlay.csv')) then
         start = ''
@@ -278,21 +283,20 @@ function getFishFromFile()
     
         end
     end
-    
-    
-
-
-    ---File = love.filesystem.read('FishInPlay.csv')
-    --nextSec = 0
-    --while (string.sub(File, nextSec, nextSec + 1) == ',') do
-    --    table.insert(fishToReturn, Fish(tonumber(string.sub(line, nextSec + 1, nextSec + 2))))
-    -- 
-    
 
     return fishToReturn
 end
 
 
---function writeFishInFile()
+function writeFishToFile(fish)
+    toWrite = ''
+    
+    for k, f in pairs(fish)do
+        toWrite = toWrite .. tostring(f.skin) .. ","
 
---end
+        toWrite = toWrite .. "\n"
+    end
+
+    love.filesystem.write('FishInPlay.csv', toWrite)
+
+end

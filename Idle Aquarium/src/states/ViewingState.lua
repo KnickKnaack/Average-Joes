@@ -67,6 +67,7 @@ function ViewingState:update(dt)
     end
 
     if love.keyboard.wasPressed('escape') then
+        writeFishToFile(self.FishInPlay)
         params = {}
         params.fishtable = self.FishInPlay
         params.currency = self.currCurrency
