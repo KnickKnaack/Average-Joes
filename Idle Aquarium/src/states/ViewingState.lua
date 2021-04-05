@@ -42,7 +42,7 @@ function ViewingState:update(dt)
     end
 
     if love.keyboard.wasPressed('=') then
-        table.insert(self.FishInPlay, Fish({math.random(3)}))
+        table.insert(self.FishInPlay, Fish({math.random(20)}))
     end
 
     if love.keyboard.wasPressed('-') then
@@ -81,8 +81,6 @@ function ViewingState:render()
     for k, f in pairs(self.FishInPlay) do
         f:render()
     end
-
-    
 
     love.graphics.setFont(gFonts['medium'])
 

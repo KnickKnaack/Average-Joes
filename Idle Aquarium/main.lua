@@ -56,10 +56,30 @@ function love.load()
 
     -- load up the graphics we'll be using throughout our states
     gTextures = {
-        ['background'] = love.graphics.newImage('graphics/background.png'), 
-        ['ClownFish'] = love.graphics.newImage('graphics/ClownFish.png'),
-        ['Blue'] = love.graphics.newImage('graphics/Blue.png'),
-        ['Sparkle'] = love.graphics.newImage('graphics/Sparkle.png')
+        ['background'] = love.graphics.newImage('graphics/background.png'),
+        ['background1'] = love.graphics.newImage('graphics/backgrounds/Background_1.png'), 
+        ['background2'] = love.graphics.newImage('graphics/backgrounds/Background_2.png'), 
+        ['background3'] = love.graphics.newImage('graphics/backgrounds/Background_3.png'), 
+        ['Common1'] = love.graphics.newImage('graphics/Common_1.png'),
+        ['Common2'] = love.graphics.newImage('graphics/Common_2.png'),
+        ['Common3'] = love.graphics.newImage('graphics/Common_3.png'),
+        ['Common4'] = love.graphics.newImage('graphics/Common_4.png'),
+        ['Common5'] = love.graphics.newImage('graphics/Common_5.png'),
+        ['Common6'] = love.graphics.newImage('graphics/Common_6.png'),
+        ['Common7'] = love.graphics.newImage('graphics/Common_7.png'),
+        ['Common8'] = love.graphics.newImage('graphics/Common_8.png'),
+        ['Common9'] = love.graphics.newImage('graphics/Common_9.png'),
+        ['Common10'] = love.graphics.newImage('graphics/Common_10.png'),
+        ['Common11'] = love.graphics.newImage('graphics/Common_11.png'),
+        ['Common12'] = love.graphics.newImage('graphics/Common_12.png'),
+        ['Common13'] = love.graphics.newImage('graphics/Common_13.png'),
+        ['Common14'] = love.graphics.newImage('graphics/Common_14.png'),
+        ['Common15'] = love.graphics.newImage('graphics/Common_15.png'),
+        ['Common16'] = love.graphics.newImage('graphics/Common_16.png'),
+        ['Common17'] = love.graphics.newImage('graphics/Common_17.png'),
+        ['Common18'] = love.graphics.newImage('graphics/Common_18.png'),
+        ['Common19'] = love.graphics.newImage('graphics/Common_19.png'),
+        ['Common20'] = love.graphics.newImage('graphics/Common_20.png'),
     }
 
     --[[
@@ -204,10 +224,10 @@ function love.draw()
 
     -- background should be drawn regardless of state, scaled to fit our
     -- virtual resolution
-    local backgroundWidth = gTextures['background']:getWidth()
-    local backgroundHeight = gTextures['background']:getHeight()
+    local backgroundWidth = gTextures['background3']:getWidth()
+    local backgroundHeight = gTextures['background3']:getHeight()
 
-    love.graphics.draw(gTextures['background'], 
+    love.graphics.draw(gTextures['background3'], 
         -- draw at coordinates 0, 0
         0, 0, 
         -- no rotation

@@ -24,7 +24,11 @@ function Fish:init(FishData)
     self.timeSinceFlip = 0
     self.waitDirection = 1
 
-    self.skins = {[1]='ClownFish', [2]='Blue', [3]='Sparkle'}
+    self.skins = {[1]='Common1',   [2]='Common2',   [3]='Common3',   [4]='Common4', 
+                  [5]='Common5',   [6]='Common4',   [7]='Common7',   [8]='Common8',
+                  [9]='Common9',   [10]='Common10', [11]='Common11', [12]='Common12',
+                  [13]='Common13', [14]='Common14', [15]='Common15', [16]='Common16',
+                  [17]='Common17', [18]='Common18', [19]='Common19', [20]='Common20'}
 
 end
 
