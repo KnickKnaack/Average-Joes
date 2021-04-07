@@ -6,7 +6,8 @@ function Fish:init(FishData)
     self.width = 22
     self.height = 11
 
-    self.skin = tonumber(FishData[1])
+    self.skin = FishData[1]
+    self.color = tonumber(FishData[2])
 
     self.currRate = self.skin
     
@@ -23,12 +24,6 @@ function Fish:init(FishData)
 
     self.timeSinceFlip = 0
     self.waitDirection = 1
-
-    self.skins = {[1]='Common1',   [2]='Common2',   [3]='Common3',   [4]='Common4', 
-                  [5]='Common5',   [6]='Common4',   [7]='Common7',   [8]='Common8',
-                  [9]='Common9',   [10]='Common10', [11]='Common11', [12]='Common12',
-                  [13]='Common13', [14]='Common14', [15]='Common15', [16]='Common16',
-                  [17]='Common17', [18]='Common18', [19]='Common19', [20]='Common20'}
 
 end
 
@@ -162,9 +157,20 @@ function Fish:update(dt)
 end
 
 function Fish:render()
+
+
+
     if (not self.dxPOS) then
-        love.graphics.draw(gTextures[self.skins[self.skin]] , self.x, self.y)
+        love.graphics.draw(gTextures[self.skin], gFrames[self.skin][self.color], self.x, self.y) --self.color
     else
-        love.graphics.draw(gTextures[self.skins[self.skin]] , self.x + self.width, self.y, 0, -1, 1)
+        love.graphics.draw(gTextures[self.skin], gFrames[self.skin][self.color], self.x + self.width, self.y, 0, -1, 1)
     end
+
+    --[[
+    if (not self.dxPOS) then
+        love.graphics.draw(gTextures[self.skins[self.skin] ] , self.x, self.y)
+    else
+        love.graphics.draw(gTextures[self.skins[self.skin] ] , self.x + self.width, self.y, 0, -1, 1)
+    end
+    ]]
 end

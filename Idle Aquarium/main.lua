@@ -60,39 +60,22 @@ function love.load()
         ['background1'] = love.graphics.newImage('graphics/backgrounds/Background_1.png'), 
         ['background2'] = love.graphics.newImage('graphics/backgrounds/Background_2.png'), 
         ['background3'] = love.graphics.newImage('graphics/backgrounds/Background_3.png'), 
-        ['Common1'] = love.graphics.newImage('graphics/Common_1.png'),
-        ['Common2'] = love.graphics.newImage('graphics/Common_2.png'),
-        ['Common3'] = love.graphics.newImage('graphics/Common_3.png'),
-        ['Common4'] = love.graphics.newImage('graphics/Common_4.png'),
-        ['Common5'] = love.graphics.newImage('graphics/Common_5.png'),
-        ['Common6'] = love.graphics.newImage('graphics/Common_6.png'),
-        ['Common7'] = love.graphics.newImage('graphics/Common_7.png'),
-        ['Common8'] = love.graphics.newImage('graphics/Common_8.png'),
-        ['Common9'] = love.graphics.newImage('graphics/Common_9.png'),
-        ['Common10'] = love.graphics.newImage('graphics/Common_10.png'),
-        ['Common11'] = love.graphics.newImage('graphics/Common_11.png'),
-        ['Common12'] = love.graphics.newImage('graphics/Common_12.png'),
-        ['Common13'] = love.graphics.newImage('graphics/Common_13.png'),
-        ['Common14'] = love.graphics.newImage('graphics/Common_14.png'),
-        ['Common15'] = love.graphics.newImage('graphics/Common_15.png'),
-        ['Common16'] = love.graphics.newImage('graphics/Common_16.png'),
-        ['Common17'] = love.graphics.newImage('graphics/Common_17.png'),
-        ['Common18'] = love.graphics.newImage('graphics/Common_18.png'),
-        ['Common19'] = love.graphics.newImage('graphics/Common_19.png'),
-        ['Common20'] = love.graphics.newImage('graphics/Common_20.png'),
+        ['Common1'] = love.graphics.newImage('graphics/fish/Common_1-4.png'),
+        ['Common2'] = love.graphics.newImage('graphics/fish/Common_5-8.png'),
+        ['Common3'] = love.graphics.newImage('graphics/fish/Common_9-12.png'),
+        ['Common4'] = love.graphics.newImage('graphics/fish/Common_13-16.png'),
+        ['Common5'] = love.graphics.newImage('graphics/fish/Common_17-20.png')
     }
 
-    --[[
     -- Quads we will generate for all of our textures; Quads allow us
     -- to show only part of a texture and not the entire thing
     gFrames = {
-        ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24),
-        ['paddles'] = GenerateQuadsPaddles(gTextures['main']),
-        ['balls'] = GenerateQuadsBalls(gTextures['main']),
-        ['bricks'] = GenerateQuadsBricks(gTextures['main']),
-        ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9)
+        ['Common1'] = GenerateQuads(gTextures['Common1'], FISH_TYPE_DATA_TABLE['Common1'][2], FISH_TYPE_DATA_TABLE['Common1'][3]),
+        ['Common2'] = GenerateQuads(gTextures['Common2'], FISH_TYPE_DATA_TABLE['Common2'][2], FISH_TYPE_DATA_TABLE['Common2'][3]),
+        ['Common3'] = GenerateQuads(gTextures['Common3'], FISH_TYPE_DATA_TABLE['Common3'][2], FISH_TYPE_DATA_TABLE['Common3'][3]),
+        ['Common4'] = GenerateQuads(gTextures['Common4'], FISH_TYPE_DATA_TABLE['Common4'][2], FISH_TYPE_DATA_TABLE['Common4'][3]),
+        ['Common5'] = GenerateQuads(gTextures['Common5'], FISH_TYPE_DATA_TABLE['Common5'][2], FISH_TYPE_DATA_TABLE['Common5'][3])
     }
-    ]]
 
     -- initialize our virtual resolution, which will be rendered within our
     -- actual window no matter its dimensions
@@ -106,8 +89,8 @@ function love.load()
     -- call each entry's `play` method
     gSounds = {
         ['paddle-hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),
-        ['play-music'] =love.audio.newSource('sounds/play_music.wav', 'static'),
-        ['menu-music'] =love.audio.newSource('sounds/menu_music.wav', 'static'),
+        ['play-music'] = love.audio.newSource('sounds/play_music.wav', 'static'),
+        ['menu-music'] = love.audio.newSource('sounds/menu_music.wav', 'static'),
         ['score'] = love.audio.newSource('sounds/score.wav', 'static'),
         ['wall-hit'] = love.audio.newSource('sounds/wall_hit.wav', 'static'),
         ['confirm'] = love.audio.newSource('sounds/confirm.wav', 'static'),
@@ -274,36 +257,42 @@ function displayFPS()
 end
 
 
+
 function getFishFromFile()
     fishToReturn = {}
 
     if (not love.filesystem.getInfo('FishInPlay.csv')) then
         start = ''
         for i = 1, 3 do
-            start = start .. math.random(3) .. ',\n'
+            start = start .. 'Common1' .. ',' .. math.random(4) .. ',\n'
         end
 
         love.filesystem.write('FishInPlay.csv', start)
     end
 
 
-    
+    test = ''
+    count = ''
     for line in love.filesystem.lines('FishInPlay.csv') do
         indexOfLast = 0
         indexOfNext = string.find(line, ",")
         FishData = {}
 
-        while (not (indexOfNext == nil)) do
-            table.insert(FishData, string.sub(line, indexOfLast + 1, indexOfNext - 1))
+        count = count .. 'x'
 
+        while (indexOfNext ~= nil) do
+            table.insert(FishData, string.sub(line, indexOfLast + 1, indexOfNext - 1))
             indexOfLast = indexOfNext
             indexOfNext = string.find(line, ",", indexOfLast + 1)
+            count = count .. 'y'
+        end
 
         table.insert(fishToReturn, Fish(FishData))
-    
-        end
+        test = test .. tostring(FishData[1]) .. ',' .. tostring(FishData[2]) .. ',' .. tostring(FishData[3])  ..'\n'
     end
+    test = test..count
 
+    love.filesystem.write('test.txt', test)
     return fishToReturn
 end
 
@@ -313,10 +302,24 @@ function writeFishToFile(fish)
     
     for k, f in pairs(fish)do
         toWrite = toWrite .. tostring(f.skin) .. ","
+        toWrite = toWrite .. tostring(f.color) .. ","
 
         toWrite = toWrite .. "\n"
     end
 
     love.filesystem.write('FishInPlay.csv', toWrite)
 
+end
+
+
+--Revised version of what is found here: https://gist.github.com/abursuc/51185d11ddd946f433e1299489ed2c07
+function math.randomchoice(t) --Selects a random item from a table
+    local keys = {}
+    size = 0
+    for key, value in pairs(t) do
+        keys[size+1] = key --Store keys in another table
+        size = size + 1
+    end
+
+    return keys[math.random(1, size)]
 end
