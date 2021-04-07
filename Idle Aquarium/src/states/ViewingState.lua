@@ -14,6 +14,8 @@ function ViewingState:enter(params)
     self.FishInPlay = params.fishtable
     self.lastRecordedTime = params.lastRecordedTime
 
+    self.test = math
+
     --[[
     -- CHANGE params.lastRecordedTime WHEN FILE MANIP IS WORKING --
     self.diff = os.time() - params.lastRecordedTime
@@ -21,9 +23,6 @@ function ViewingState:enter(params)
         self.currCurrency = params.currency + f.currRate * self.diff
     end
     --]]
-
-
-    self.lastRecordedTime = os.time()
 
 end
 
@@ -39,13 +38,13 @@ function ViewingState:update(dt)
 
     if (self.diff >= 1) then
         for k, f in pairs(self.FishInPlay) do
-            self.currCurrency = self.currCurrency + f.currRate * self.diff
+            self.currCurrency = self.currCurrency + FISH_TYPE_DATA_TABLE[f.skin][1] * self.diff
         end
         self.lastRecordedTime = os.time()
     end
 
     if love.keyboard.wasPressed('=') then
-        table.insert(self.FishInPlay, Fish(math.random(3)))
+        table.insert(self.FishInPlay, Fish({math.randomchoice(FISH_TYPE_DATA_TABLE), math.random(4)}))
     end
 
     if love.keyboard.wasPressed('-') then
@@ -56,7 +55,7 @@ function ViewingState:update(dt)
         params = {}
         params.fishtable = self.FishInPlay
         params.currency = self.currCurrency
-        params.lastRecordedTime = os.time()
+        params.lastRecordedTime = self.lastRecordedTime
         gStateMachine:change('shop', params)
     end
 
@@ -70,6 +69,7 @@ function ViewingState:update(dt)
     end
 
     if love.keyboard.wasPressed('escape') then
+        writeFishToFile(self.FishInPlay)
         params = {}
         params.fishtable = self.FishInPlay
         params.currency = self.currCurrency
@@ -84,14 +84,16 @@ function ViewingState:render()
         f:render()
     end
 
-    
-
     love.graphics.setFont(gFonts['medium'])
+
     love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
         VIRTUAL_WIDTH, 'left')
 
-    love.graphics.setFont(gFonts['medium'])
-    love.graphics.printf("^", VIRTUAL_WIDTH/2, VIRTUAL_HEIGHT - 20,
+    love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
         VIRTUAL_WIDTH, 'left')
 
+
 end
+
+
+

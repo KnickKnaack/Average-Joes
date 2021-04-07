@@ -1,12 +1,13 @@
 
 Fish = Class{}
 
-function Fish:init(skin)
+function Fish:init(FishData)
     -- simple positional and dimensional variables
     self.width = 22
     self.height = 11
 
-    self.skin = skin
+    self.skin = FishData[1]
+    self.color = tonumber(FishData[2])
 
     self.currRate = self.skin
     
@@ -23,8 +24,6 @@ function Fish:init(skin)
 
     self.timeSinceFlip = 0
     self.waitDirection = 1
-
-    self.skins = {[1]='ClownFish', [2]='Blue', [3]='Sparkle'}
 
 end
 
@@ -158,9 +157,20 @@ function Fish:update(dt)
 end
 
 function Fish:render()
+
+
+
     if (not self.dxPOS) then
-        love.graphics.draw(gTextures[self.skins[self.skin]] , self.x, self.y)
+        love.graphics.draw(gTextures[self.skin], gFrames[self.skin][self.color], self.x, self.y) --self.color
     else
-        love.graphics.draw(gTextures[self.skins[self.skin]] , self.x + self.width, self.y, 0, -1, 1)
+        love.graphics.draw(gTextures[self.skin], gFrames[self.skin][self.color], self.x + self.width, self.y, 0, -1, 1)
     end
+
+    --[[
+    if (not self.dxPOS) then
+        love.graphics.draw(gTextures[self.skins[self.skin] ] , self.x, self.y)
+    else
+        love.graphics.draw(gTextures[self.skins[self.skin] ] , self.x + self.width, self.y, 0, -1, 1)
+    end
+    ]]
 end
