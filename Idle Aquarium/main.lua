@@ -116,7 +116,7 @@ function love.load()
     -- 6. 'game-over' (the player has lost; display score and allow restart)
     gStateMachine = StateMachine ({
         ['start'] = function()
-          love.audio.setVolume(0.5)
+          love.audio.setVolume(0)
           love.audio.stop()
           gSounds['menu-music']:play()
           gSounds['menu-music']:setLooping(true)
@@ -214,7 +214,6 @@ function love.draw()
     
     -- display FPS for debugging; simply comment out to remove
     displayFPS()
-    
     push:apply('end')
 end
 
@@ -246,7 +245,6 @@ function displayFPS()
     love.graphics.setColor(0, 1, 0, 1)
     love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 5, 5)
 end
-
 
 function readFishInPlay()
     fishToReturn = {}
