@@ -255,13 +255,7 @@ function displayFPS()
     love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 5, 5)
 end
 
-<<<<<<< HEAD
-function readFishInPlay()
-=======
-
-
 function getFishFromFile()
->>>>>>> ec02c3618cc0c8977a878a66c02fc4abf882031a
     fishToReturn = {}
 
     if (not love.filesystem.getInfo('FishInPlay.csv')) then
