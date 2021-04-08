@@ -56,23 +56,26 @@ function love.load()
 
     -- load up the graphics we'll be using throughout our states
     gTextures = {
-        ['background'] = love.graphics.newImage('graphics/background.png'), 
-        ['ClownFish'] = love.graphics.newImage('graphics/ClownFish.png'),
-        ['Blue'] = love.graphics.newImage('graphics/Blue.png'),
-        ['Sparkle'] = love.graphics.newImage('graphics/Sparkle.png')
+        ['background'] = love.graphics.newImage('graphics/background.png'),
+        ['background1'] = love.graphics.newImage('graphics/backgrounds/Background_1.png'), 
+        ['background2'] = love.graphics.newImage('graphics/backgrounds/Background_2.png'), 
+        ['background3'] = love.graphics.newImage('graphics/backgrounds/Background_3.png'), 
+        ['Common1'] = love.graphics.newImage('graphics/fish/Common_1-4.png'),
+        ['Common2'] = love.graphics.newImage('graphics/fish/Common_5-8.png'),
+        ['Common3'] = love.graphics.newImage('graphics/fish/Common_9-12.png'),
+        ['Common4'] = love.graphics.newImage('graphics/fish/Common_13-16.png'),
+        ['Common5'] = love.graphics.newImage('graphics/fish/Common_17-20.png')
     }
 
-    --[[
     -- Quads we will generate for all of our textures; Quads allow us
     -- to show only part of a texture and not the entire thing
     gFrames = {
-        ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24),
-        ['paddles'] = GenerateQuadsPaddles(gTextures['main']),
-        ['balls'] = GenerateQuadsBalls(gTextures['main']),
-        ['bricks'] = GenerateQuadsBricks(gTextures['main']),
-        ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9)
+        ['Common1'] = GenerateQuads(gTextures['Common1'], FISH_TYPE_DATA_TABLE['Common1'][2], FISH_TYPE_DATA_TABLE['Common1'][3]),
+        ['Common2'] = GenerateQuads(gTextures['Common2'], FISH_TYPE_DATA_TABLE['Common2'][2], FISH_TYPE_DATA_TABLE['Common2'][3]),
+        ['Common3'] = GenerateQuads(gTextures['Common3'], FISH_TYPE_DATA_TABLE['Common3'][2], FISH_TYPE_DATA_TABLE['Common3'][3]),
+        ['Common4'] = GenerateQuads(gTextures['Common4'], FISH_TYPE_DATA_TABLE['Common4'][2], FISH_TYPE_DATA_TABLE['Common4'][3]),
+        ['Common5'] = GenerateQuads(gTextures['Common5'], FISH_TYPE_DATA_TABLE['Common5'][2], FISH_TYPE_DATA_TABLE['Common5'][3])
     }
-    ]]
 
     -- initialize our virtual resolution, which will be rendered within our
     -- actual window no matter its dimensions
@@ -86,8 +89,8 @@ function love.load()
     -- call each entry's `play` method
     gSounds = {
         ['paddle-hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),
-        ['play-music'] =love.audio.newSource('sounds/play_music.wav', 'static'),
-        ['menu-music'] =love.audio.newSource('sounds/menu_music.wav', 'static'),
+        ['play-music'] = love.audio.newSource('sounds/play_music.wav', 'static'),
+        ['menu-music'] = love.audio.newSource('sounds/menu_music.wav', 'static'),
         ['score'] = love.audio.newSource('sounds/score.wav', 'static'),
         ['wall-hit'] = love.audio.newSource('sounds/wall_hit.wav', 'static'),
         ['confirm'] = love.audio.newSource('sounds/confirm.wav', 'static'),
@@ -116,7 +119,7 @@ function love.load()
     -- 6. 'game-over' (the player has lost; display score and allow restart)
     gStateMachine = StateMachine ({
         ['start'] = function()
-          love.audio.setVolume(0.5)
+          love.audio.setVolume(0)
           love.audio.stop()
           gSounds['menu-music']:play()
           gSounds['menu-music']:setLooping(true)
@@ -204,10 +207,10 @@ function love.draw()
 
     -- background should be drawn regardless of state, scaled to fit our
     -- virtual resolution
-    local backgroundWidth = gTextures['background']:getWidth()
-    local backgroundHeight = gTextures['background']:getHeight()
+    local backgroundWidth = gTextures['background3']:getWidth()
+    local backgroundHeight = gTextures['background3']:getHeight()
 
-    love.graphics.draw(gTextures['background'], 
+    love.graphics.draw(gTextures['background3'], 
         -- draw at coordinates 0, 0
         0, 0, 
         -- no rotation
@@ -220,7 +223,6 @@ function love.draw()
     
     -- display FPS for debugging; simply comment out to remove
     displayFPS()
-    
     push:apply('end')
 end
 
@@ -253,35 +255,32 @@ function displayFPS()
     love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 5, 5)
 end
 
-
 function getFishFromFile()
     fishToReturn = {}
 
     if (not love.filesystem.getInfo('FishInPlay.csv')) then
         start = ''
         for i = 1, 3 do
-            start = start .. math.random(3) .. ',\n'
+            start = start .. 'Common1' .. ',' .. math.random(4) .. ',\n'
         end
 
         love.filesystem.write('FishInPlay.csv', start)
     end
 
 
-    
     for line in love.filesystem.lines('FishInPlay.csv') do
         indexOfLast = 0
         indexOfNext = string.find(line, ",")
         FishData = {}
 
-        while (not (indexOfNext == nil)) do
-            table.insert(FishData, string.sub(line, indexOfLast + 1, indexOfNext - 1))
 
+        while (indexOfNext ~= nil) do
+            table.insert(FishData, string.sub(line, indexOfLast + 1, indexOfNext - 1))
             indexOfLast = indexOfNext
             indexOfNext = string.find(line, ",", indexOfLast + 1)
+        end
 
         table.insert(fishToReturn, Fish(FishData))
-    
-        end
     end
 
     return fishToReturn
@@ -293,6 +292,7 @@ function writeFishToFile(fish)
     
     for k, f in pairs(fish)do
         toWrite = toWrite .. tostring(f.skin) .. ","
+        toWrite = toWrite .. tostring(f.color) .. ","
 
         toWrite = toWrite .. "\n"
     end
@@ -318,4 +318,16 @@ function split(s, delimiter)
         i = i + 1
     end
     return result;
+end
+
+--Revised version of what is found here: https://gist.github.com/abursuc/51185d11ddd946f433e1299489ed2c07
+function math.randomchoice(t) --Selects a random item from a table
+    local keys = {}
+    size = 0
+    for key, value in pairs(t) do
+        keys[size+1] = key --Store keys in another table
+        size = size + 1
+    end
+
+    return keys[math.random(1, size)]
 end
