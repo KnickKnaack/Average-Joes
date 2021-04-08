@@ -300,3 +300,22 @@ function writeFishToFile(fish)
     love.filesystem.write('FishInPlay.csv', toWrite)
 
 end
+
+function initializeShopFile()
+    itemList = "New Fish,10 coins,Earns 50 coins/minute\nNew Background,50 coins,Offers bonus to clownfish\nNew decoration,25 coins,Earns 15 coins/minute\n"
+    love.filesystem.write("FullShopList.csv", itemList)
+end
+
+
+--[[
+    Split function retrieved from https://love2d.org/forums/viewtopic.php?f=4&t=85549
+]]
+function split(s, delimiter)
+    result = {};
+    i = 0
+    for match in (s..delimiter):gmatch("(.-)"..delimiter) do
+        table.insert(result, i, match);
+        i = i + 1
+    end
+    return result;
+end
