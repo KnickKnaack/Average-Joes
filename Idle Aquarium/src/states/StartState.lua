@@ -54,8 +54,5 @@ function StartState:render()
     love.graphics.printf("Click anywhere to play", 0, (VIRTUAL_HEIGHT / 3) * 2,
         VIRTUAL_WIDTH, 'center')
 
-    love.graphics.printf("Click anywhere to play", 0, (VIRTUAL_HEIGHT / 3) * 2,
-        VIRTUAL_WIDTH, 'center')
-
     
 end

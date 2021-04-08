@@ -268,28 +268,21 @@ function getFishFromFile()
     end
 
 
-    test = ''
-    count = ''
     for line in love.filesystem.lines('FishInPlay.csv') do
         indexOfLast = 0
         indexOfNext = string.find(line, ",")
         FishData = {}
 
-        count = count .. 'x'
 
         while (indexOfNext ~= nil) do
             table.insert(FishData, string.sub(line, indexOfLast + 1, indexOfNext - 1))
             indexOfLast = indexOfNext
             indexOfNext = string.find(line, ",", indexOfLast + 1)
-            count = count .. 'y'
         end
 
         table.insert(fishToReturn, Fish(FishData))
-        test = test .. tostring(FishData[1]) .. ',' .. tostring(FishData[2]) .. ',' .. tostring(FishData[3])  ..'\n'
     end
-    test = test..count
 
-    love.filesystem.write('test.txt', test)
     return fishToReturn
 end
 
