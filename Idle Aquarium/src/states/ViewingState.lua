@@ -58,6 +58,14 @@ function ViewingState:update(dt)
         params.lastRecordedTime = self.lastRecordedTime
         gStateMachine:change('shop', params)
     end
+    
+    if love.keyboard.wasPressed('m') then
+        params = {}
+        params.fishtable = self.FishInPlay
+        params.currency = self.currCurrency
+        params.lastRecordedTime = self.lastRecordedTime
+        gStateMachine:change('minigame', params)
+    end
 
     if love.keyboard.wasPressed('o') then
         params = {}
@@ -80,20 +88,12 @@ function ViewingState:update(dt)
 end
 
 function ViewingState:render() 
-    for k, f in pairs(self.FishInPlay) do
-        f:render()
-    end
+  for k, f in pairs(self.FishInPlay) do
+      f:render()
+  end
 
-    love.graphics.setFont(gFonts['medium'])
+  love.graphics.setFont(gFonts['medium'])
 
-    love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
-        VIRTUAL_WIDTH, 'left')
-
-    love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
-        VIRTUAL_WIDTH, 'left')
-
-
+  love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
+      VIRTUAL_WIDTH, 'left')
 end
-
-
-

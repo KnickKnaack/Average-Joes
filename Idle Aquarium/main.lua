@@ -56,7 +56,7 @@ function love.load()
 
     -- load up the graphics we'll be using throughout our states
     gTextures = {
-        ['background'] = love.graphics.newImage('graphics/background.png'),
+        ['background'] = love.graphics.newImage('graphics/backgrounds/background.png'),
         ['background1'] = love.graphics.newImage('graphics/backgrounds/Background_1.png'), 
         ['background2'] = love.graphics.newImage('graphics/backgrounds/Background_2.png'), 
         ['background3'] = love.graphics.newImage('graphics/backgrounds/Background_3.png'), 
@@ -132,7 +132,15 @@ function love.load()
           return ViewingState()
         end,
         ['shop'] = function() return ShopState() end,
-        ['settings'] = function() return SettingsState() end
+        ['settings'] = function() return SettingsState() end,
+        
+        ['minigame'] = function()
+          love.audio.stop()
+          gSounds['music']:play()
+          gSounds['music']:setLooping(true)
+          -- add code to change background
+          return MiniGameState()
+        end
     })
     gStateMachine:change('start')
     
@@ -222,11 +230,10 @@ function love.draw()
     gStateMachine:render()
     
     -- display FPS for debugging; simply comment out to remove
-    displayFPS()
+    -- displayFPS()
     push:apply('end')
+  
 end
-
-
 
 --[[
     This method will allow us to test for indiviudal mouse presses
@@ -268,28 +275,21 @@ function getFishFromFile()
     end
 
 
-    test = ''
-    count = ''
     for line in love.filesystem.lines('FishInPlay.csv') do
         indexOfLast = 0
         indexOfNext = string.find(line, ",")
         FishData = {}
 
-        count = count .. 'x'
 
         while (indexOfNext ~= nil) do
             table.insert(FishData, string.sub(line, indexOfLast + 1, indexOfNext - 1))
             indexOfLast = indexOfNext
             indexOfNext = string.find(line, ",", indexOfLast + 1)
-            count = count .. 'y'
         end
 
         table.insert(fishToReturn, Fish(FishData))
-        test = test .. tostring(FishData[1]) .. ',' .. tostring(FishData[2]) .. ',' .. tostring(FishData[3])  ..'\n'
     end
-    test = test..count
 
-    love.filesystem.write('test.txt', test)
     return fishToReturn
 end
 
@@ -308,6 +308,24 @@ function writeFishToFile(fish)
 
 end
 
+function initializeShopFile()
+    itemList = "New Fish,10 coins,Earns 50 coins/minute\nNew Background,50 coins,Offers bonus to clownfish\nNew decoration,25 coins,Earns 15 coins/minute\n"
+    love.filesystem.write("FullShopList.csv", itemList)
+end
+
+
+--[[
+    Split function retrieved from https://love2d.org/forums/viewtopic.php?f=4&t=85549
+]]
+function split(s, delimiter)
+    result = {};
+    i = 0
+    for match in (s..delimiter):gmatch("(.-)"..delimiter) do
+        table.insert(result, i, match);
+        i = i + 1
+    end
+    return result;
+end
 
 --Revised version of what is found here: https://gist.github.com/abursuc/51185d11ddd946f433e1299489ed2c07
 function math.randomchoice(t) --Selects a random item from a table

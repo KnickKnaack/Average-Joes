@@ -1,7 +1,7 @@
 
 SettingsState = Class{__includes = BaseState}
+
 function SettingsState:enter(params) 
-    
     self.FishInPlay = params.fishtable
     self.currCurrency = params.currency
     self.lastRecordedTime = params.lastRecordedTime
@@ -30,7 +30,7 @@ function SettingsState:render()
 
     -- render state header
     love.graphics.setFont(gFonts['medium'])
-    love.graphics.printf("SETTINGS", 0, 10, VIRTUAL_WIDTH, 'center')
+    love.graphics.printf("Options", 0, 10, VIRTUAL_WIDTH, 'center')
     
     -- volume setting
     love.graphics.setFont(gFonts['small'])
