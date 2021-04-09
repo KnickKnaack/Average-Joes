@@ -34,6 +34,7 @@ require 'src/states/StartState'
 require 'src/states/ViewingState'
 require 'src/states/ShopState'
 require 'src/states/SettingsState'
+require 'src/states/MiniGameState'
 
 -- slider object used for volume control in settings state
 require 'src/simple-slider'

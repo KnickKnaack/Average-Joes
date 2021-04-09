@@ -132,7 +132,15 @@ function love.load()
           return ViewingState()
         end,
         ['shop'] = function() return ShopState() end,
-        ['settings'] = function() return SettingsState() end
+        ['settings'] = function() return SettingsState() end,
+        
+        ['minigame'] = function()
+          love.audio.stop()
+          gSounds['music']:play()
+          gSounds['music']:setLooping(true)
+          -- add code to change background
+          return MiniGameState()
+        end
     })
     gStateMachine:change('start')
     
@@ -222,11 +230,10 @@ function love.draw()
     gStateMachine:render()
     
     -- display FPS for debugging; simply comment out to remove
-    displayFPS()
+    -- displayFPS()
     push:apply('end')
+  
 end
-
-
 
 --[[
     This method will allow us to test for indiviudal mouse presses
