@@ -18,6 +18,11 @@ WINDOW_HEIGHT = 720
 VIRTUAL_WIDTH = 432
 VIRTUAL_HEIGHT = 243
 
+-- for rendering fish until a better method is formed
+FISH_SKIN_TABLE = {[1]='Common1',   [2]='Common2',   [3]='Common3',   [4]='Common4', [5]='Common5'}
+--Fish data with skins [Rate, xsize, ysize]
+FISH_TYPE_DATA_TABLE = {['Common1']={1, 23, 11}, ['Common2']={2, 15, 15}, ['Common3']={3, 18, 11}, ['Common4']={4, 17, 17}, ['Common5']={5, 34, 20}}
+
 
 -- Fish behaviour
 MAX_VER_FISH_SPEED = 80
