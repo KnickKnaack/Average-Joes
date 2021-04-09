@@ -27,6 +27,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     Downloaded by:      Shannon Head
     Date of download:   5 April 2021
     Source:             https://love2d.org/forums/viewtopic.php?t=80711
+    Changes made:       Additional comments
 ]]
 
 local slider = {}
