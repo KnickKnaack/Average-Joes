@@ -268,7 +268,7 @@ function getFishFromFile()
     if (not love.filesystem.getInfo('FishInPlay.csv')) then
         start = ''
         for i = 1, 3 do
-            start = start .. 'Common1' .. ',' .. math.random(4) .. ',\n'
+            start = start .. 'Common1' .. ',' .. math.random(4) .. '\n'
         end
 
         love.filesystem.write('FishInPlay.csv', start)
@@ -287,6 +287,8 @@ function getFishFromFile()
             indexOfNext = string.find(line, ",", indexOfLast + 1)
         end
 
+        table.insert(FishData, string.sub(line, indexOfLast + 1))
+
         table.insert(fishToReturn, Fish(FishData))
     end
 
@@ -299,9 +301,7 @@ function writeFishToFile(fish)
     
     for k, f in pairs(fish)do
         toWrite = toWrite .. tostring(f.skin) .. ","
-        toWrite = toWrite .. tostring(f.color) .. ","
-
-        toWrite = toWrite .. "\n"
+        toWrite = toWrite .. tostring(f.color) .. "\n"
     end
 
     love.filesystem.write('FishInPlay.csv', toWrite)
