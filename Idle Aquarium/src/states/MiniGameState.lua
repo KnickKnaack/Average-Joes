@@ -80,8 +80,7 @@ function MiniGameState:render()
       f:render()
     end
     
-    love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
-      VIRTUAL_WIDTH, 'left')
+    renderCoins(self.currCurrency, 5, VIRTUAL_HEIGHT - 20, VIRTUAL_WIDTH, 'left')
     
     if (gameOver == true) then
       love.graphics.clear()

@@ -51,6 +51,10 @@ function ViewingState:update(dt)
         table.remove(self.FishInPlay)
     end
 
+    if love.keyboard.wasPressed('p') then
+        self.currCurrency = self.currCurrency + 1000000
+    end
+
     if love.keyboard.wasPressed('s') then
         params = {}
         params.fishtable = self.FishInPlay
@@ -88,12 +92,11 @@ function ViewingState:update(dt)
 end
 
 function ViewingState:render() 
-  for k, f in pairs(self.FishInPlay) do
-      f:render()
-  end
+    for k, f in pairs(self.FishInPlay) do
+        f:render()
+    end
 
-  love.graphics.setFont(gFonts['medium'])
+    love.graphics.setFont(gFonts['medium'])
 
-  love.graphics.printf("Monies: " .. tostring(self.currCurrency), 5, VIRTUAL_HEIGHT - 20,
-      VIRTUAL_WIDTH, 'left')
+    renderCoins(self.currCurrency, 5, VIRTUAL_HEIGHT - 20, VIRTUAL_WIDTH, 'left')
 end

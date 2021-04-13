@@ -338,3 +338,22 @@ function math.randomchoice(t) --Selects a random item from a table
 
     return keys[math.random(1, size)]
 end
+
+
+function renderCoins(Coins, x, y, limit, align)
+    love.graphics.setFont(gFonts['medium'])
+
+    if (Coins < 1000) then
+        love.graphics.printf(tostring(Coins) .. " Coins", x, y, limit, align)
+
+    elseif (Coins >= 1000 and Coins < 1000000) then
+        love.graphics.printf(string.format("%.2f", Coins/1000) .. "K Coins", x, y, limit, align)
+
+    elseif (Coins >= 1000000 and Coins < 1000000000) then
+        love.graphics.printf(string.format("%.2f", Coins/1000000) .. "M Coins", x, y, limit, align)
+
+    else
+        love.graphics.printf(string.format("%.2f", Coins/1000000000) .. "B Coins", x, y, limit, align)
+    end
+
+end
