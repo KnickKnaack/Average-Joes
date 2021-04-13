@@ -8,8 +8,7 @@ function SettingsState:enter(params)
     self.callingState = params.callingState
     
     -- volume slider instantiation
-    volumeSlider = newSlider(216, 60, 100, 0, 0, 1.0,
-                            function (v) love.audio.setVolume(v) end)
+    volumeSlider = Slider(162, 55, 100, love.audio.getVolume(), 0, 1.0, function (v) love.audio.setVolume(v) end)
 end
 
 function SettingsState:update(dt)
@@ -37,6 +36,4 @@ function SettingsState:render()
     love.graphics.printf("VOLUME", 0, 45, VIRTUAL_WIDTH, 'center')
     love.graphics.setLineWidth(1)
     volumeSlider:draw()
-    volumeSlider:update()
-    
 end

@@ -119,7 +119,7 @@ function love.load()
     -- 6. 'game-over' (the player has lost; display score and allow restart)
     gStateMachine = StateMachine ({
         ['start'] = function()
-          love.audio.setVolume(0)
+          love.audio.setVolume(0.25)
           love.audio.stop()
           gSounds['menu-music']:play()
           gSounds['menu-music']:setLooping(true)
