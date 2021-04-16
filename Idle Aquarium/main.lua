@@ -274,7 +274,7 @@ function getFishFromFile()
     fishToReturn = {}
 
     if (not love.filesystem.getInfo('FishInPlay.csv')) then
-        start = ''
+        local start = ''
         for i = 1, 3 do
             start = start .. 'Common1' .. ',' .. math.random(4) .. '\n'
         end
@@ -284,9 +284,9 @@ function getFishFromFile()
 
 
     for line in love.filesystem.lines('FishInPlay.csv') do
-        indexOfLast = 0
-        indexOfNext = string.find(line, ",")
-        FishData = {}
+        local indexOfLast = 0
+        local indexOfNext = string.find(line, ",")
+        local FishData = {}
 
 
         while (indexOfNext ~= nil) do
@@ -305,7 +305,7 @@ end
 
 
 function writeFishToFile(fish)
-    toWrite = ''
+    local toWrite = ''
     
     for k, f in pairs(fish)do
         toWrite = toWrite .. tostring(f.skin) .. ","
@@ -315,6 +315,35 @@ function writeFishToFile(fish)
     love.filesystem.write('FishInPlay.csv', toWrite)
 
 end
+
+
+function readUtilFromFile()
+    if (not love.filesystem.getInfo('Util.csv')) then
+        start = '0\n'
+        start = start .. tostring(os.time())..'\n'
+        love.filesystem.write('Util.csv', start)
+    end
+
+    toReturn = {}
+
+    for line in love.filesystem.lines('Util.csv') do
+        table.insert(toReturn, tonumber(line))
+    end
+
+    return toReturn
+
+end
+
+function writeUtilToFile(data)
+    local toWrite = ''
+
+    for k, item in pairs(data) do
+        toWrite = toWrite .. tostring(item) .. "\n"
+    end
+
+    love.filesystem.write('Util.csv', toWrite)
+end
+
 
 function initializeShopFile()
     itemList = "Common Fish 1,1000,Earns 5 coins/second,Common1,3\n"
@@ -328,7 +357,7 @@ end
     Split function retrieved from https://love2d.org/forums/viewtopic.php?f=4&t=85549
 ]]
 function split(s, delimiter)
-    result = {};
+    local result = {};
     i = 0
     for match in (s..delimiter):gmatch("(.-)"..delimiter) do
         table.insert(result, i, match);
@@ -340,7 +369,7 @@ end
 --Revised version of what is found here: https://gist.github.com/abursuc/51185d11ddd946f433e1299489ed2c07
 function math.randomchoice(t) --Selects a random item from a table
     local keys = {}
-    size = 0
+    local size = 0
     for key, value in pairs(t) do
         keys[size+1] = key --Store keys in another table
         size = size + 1

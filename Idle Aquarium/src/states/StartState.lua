@@ -19,6 +19,9 @@ StartState = Class{__includes = BaseState}
 
 function StartState:enter(params)
     self.fishtable = getFishFromFile()
+    local userData = readUtilFromFile()
+    self.currency = userData[1]
+    self.lastRecordedTime = userData[2]
 end
 
 function StartState:update(dt)
@@ -30,8 +33,8 @@ function StartState:update(dt)
     if love.mouse.isDown(1) then
         params = {}
         params.fishtable = self.fishtable
-        params.currency = 0
-        params.lastRecordedTime = os.time()
+        params.currency = self.currency
+        params.lastRecordedTime = self.lastRecordedTime
         gStateMachine:change('viewing', params)
     end
 
