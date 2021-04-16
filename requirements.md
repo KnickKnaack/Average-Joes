@@ -12,7 +12,9 @@ Our game will include a shop where players can buy certain fish, decorations and
 * "Coins" Refer to the currency that the player can use within the game
 
 ### 1.4 References
-I don't think references are needed but you guys can decide
+Ogden, C. (2018)  Game framework source code (Unknown version) [source code] https://learning.edx.org/course/course-v1:HarvardX+CS50G+Games/home  
+Prosser, G. (2016) simple-slider source code (Unknown version) [source code]. https://love2d.org/forums/viewtopic.php?t=80711
+
 <br/><br/>
 <br/><br/>
 
@@ -25,7 +27,7 @@ The player will play the game in any cases that they want to take a break from w
 
 ### 2.2 Domain Model with Description  
 ![Idle Aquarium Domain Model](https://knickknaack.github.io/Average-Joes/DomainModel.png)
-Users will transfer between states of the game. these states include the viewing area, breeding area, shop, and minigames. Data is passed between states (ie.the fish to render when transfering back to the viewing state) to keep the game seamless.
+Users will transfer between states of the game. these states include the viewing area, breeding area, shop, and minigames. Data is passed between states (i.e., the fish to render when transferring back to the viewing state) to keep the game seamless.
 
 ### 2.3 Product Functions (general)  
 To keep our game simple and easy to use we have decided to implement very basic functionality. Our game will include a viewing state that contains the fish and decorations the player has in their tank. There will also be a shop where the player can spend the coins they earn from their aquarium to buy new fish, decorations, and tanks. Minigames will be available for the user to play where they can earn rewards and other items that will help them build their aquarium. The key element that makes our game an idle game, is that the player can still earn money even while they are not playing. This will allow the player to still progress while being free to do other things and not focus solely on the game.
@@ -44,21 +46,21 @@ Our program runs on the LOVE framework for lua. it can be downloaded [here](http
 
 
 ## 3. Functional Requirements
-Here is a link to our [User Sories Page](https://knickknaack.github.io/Average-Joes/userstories)
+Here is a link to our [User Stories Page](https://knickknaack.github.io/Average-Joes/userstories)
 <br/><br/>
 <br/><br/>
 
 
 ## 4. System and Non-functional Requirements
 
-### 4.1 External Interface Requirements (User,Hardware,Software,Communications)
-Our game will have clicking interfaces and menues
+### 4.1 External Interface Requirements (User, Hardware, Software, Communications)
+Our game will have clicking interfaces and menus
 
 ### 4.2 Performance Requirements
 Any performance needs are explained in section 2.5
 
 ### 4.3 Design Constraints
-WE currentyl have no design restrictions
+We currently have no design restrictions
 
 ### 4.4 Quality Requirements
 Our systems quality requirements are that it needs to be visually appealing in addition to a fundamental functionality. Since the main goal for our program is to give the player a place to enjoy watching their aquarium creation, the artwork and movement need to be engaging.
