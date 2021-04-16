@@ -65,7 +65,12 @@ function love.load()
         ['Common3'] = love.graphics.newImage('graphics/fish/Common_9-12.png'),
         ['Common4'] = love.graphics.newImage('graphics/fish/Common_13-16.png'),
         ['Common5'] = love.graphics.newImage('graphics/fish/Common_17-20.png'),
-        ['Coral'] = love.graphics.newImage('graphics/decoration/Coral.png')
+        ['Coral'] = love.graphics.newImage('graphics/decoration/Coral.png'),
+        ['Rare1'] = love.graphics.newImage('graphics/fish/Rare12.png'),
+        ['Rare2'] = love.graphics.newImage('graphics/fish/Rare34.png'),
+        ['Rare3'] = love.graphics.newImage('graphics/fish/Rare56.png'),
+        ['Rare4'] = love.graphics.newImage('graphics/fish/Rare78.png'),
+        ['Rare5'] = love.graphics.newImage('graphics/fish/Rare910.png')
     }
 
     -- Quads we will generate for all of our textures; Quads allow us
@@ -75,7 +80,12 @@ function love.load()
         ['Common2'] = GenerateQuads(gTextures['Common2'], FISH_TYPE_DATA_TABLE['Common2'][2], FISH_TYPE_DATA_TABLE['Common2'][3]),
         ['Common3'] = GenerateQuads(gTextures['Common3'], FISH_TYPE_DATA_TABLE['Common3'][2], FISH_TYPE_DATA_TABLE['Common3'][3]),
         ['Common4'] = GenerateQuads(gTextures['Common4'], FISH_TYPE_DATA_TABLE['Common4'][2], FISH_TYPE_DATA_TABLE['Common4'][3]),
-        ['Common5'] = GenerateQuads(gTextures['Common5'], FISH_TYPE_DATA_TABLE['Common5'][2], FISH_TYPE_DATA_TABLE['Common5'][3])
+        ['Common5'] = GenerateQuads(gTextures['Common5'], FISH_TYPE_DATA_TABLE['Common5'][2], FISH_TYPE_DATA_TABLE['Common5'][3]),
+        ['Rare1'] = GenerateQuads(gTextures['Rare1'], FISH_TYPE_DATA_TABLE['Rare1'][2], FISH_TYPE_DATA_TABLE['Rare1'][3]),
+        ['Rare2'] = GenerateQuads(gTextures['Rare2'], FISH_TYPE_DATA_TABLE['Rare2'][2], FISH_TYPE_DATA_TABLE['Rare2'][3]),
+        ['Rare3'] = GenerateQuads(gTextures['Rare3'], FISH_TYPE_DATA_TABLE['Rare3'][2], FISH_TYPE_DATA_TABLE['Rare3'][3]),
+        ['Rare4'] = GenerateQuads(gTextures['Rare4'], FISH_TYPE_DATA_TABLE['Rare4'][2], FISH_TYPE_DATA_TABLE['Rare4'][3]),
+        ['Rare5'] = GenerateQuads(gTextures['Rare5'], FISH_TYPE_DATA_TABLE['Rare5'][2], FISH_TYPE_DATA_TABLE['Rare5'][3])
     }
 
     -- initialize our virtual resolution, which will be rendered within our
