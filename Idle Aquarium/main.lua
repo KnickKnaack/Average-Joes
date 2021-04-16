@@ -64,7 +64,8 @@ function love.load()
         ['Common2'] = love.graphics.newImage('graphics/fish/Common_5-8.png'),
         ['Common3'] = love.graphics.newImage('graphics/fish/Common_9-12.png'),
         ['Common4'] = love.graphics.newImage('graphics/fish/Common_13-16.png'),
-        ['Common5'] = love.graphics.newImage('graphics/fish/Common_17-20.png')
+        ['Common5'] = love.graphics.newImage('graphics/fish/Common_17-20.png'),
+        ['Coral'] = love.graphics.newImage('graphics/decoration/Coral.png')
     }
 
     -- Quads we will generate for all of our textures; Quads allow us
@@ -152,6 +153,13 @@ function love.load()
 
     --File folder to store data files in 
     love.filesystem.setIdentity('Idle Aquarium')
+
+
+    --Item purchased flags
+    --STORE IN FILE LATER
+    item1Purchased = false;
+    item2Purchased = false;
+    item3Purchased = false;
 
 
 end
@@ -309,7 +317,9 @@ function writeFishToFile(fish)
 end
 
 function initializeShopFile()
-    itemList = "New Fish,10 coins,Earns 50 coins/minute\nNew Background,50 coins,Offers bonus to clownfish\nNew decoration,25 coins,Earns 15 coins/minute\n"
+    itemList = "Common Fish 1,1000,Earns 5 coins/second,Common1,3\n"
+    itemList = itemList .. "New Background,2000,Offers bonus to clownfish.,background1\n"
+    itemList = itemList .. "Coral decoration,500,Earns 15 coins/second,Coral\n"
     love.filesystem.write("FullShopList.csv", itemList)
 end
 
