@@ -29,6 +29,9 @@ require 'src/Dependencies'
 mouse = {}
 fish = {'src/Fish'}
 
+lastRecordedTime = 0
+currCurrency = 0
+
 --[[
     Called just once at the beginning of the game; used to set up
     game objects, variables, etc. and prepare the game world.
@@ -68,7 +71,12 @@ function love.load()
         ['Common3'] = love.graphics.newImage('graphics/fish/Common_9-12.png'),
         ['Common4'] = love.graphics.newImage('graphics/fish/Common_13-16.png'),
         ['Common5'] = love.graphics.newImage('graphics/fish/Common_17-20.png'),
-        ['Coral'] = love.graphics.newImage('graphics/decoration/Coral.png')
+        ['Coral'] = love.graphics.newImage('graphics/decoration/Coral.png'),
+        ['Rare1'] = love.graphics.newImage('graphics/fish/Rare12.png'),
+        ['Rare2'] = love.graphics.newImage('graphics/fish/Rare34.png'),
+        ['Rare3'] = love.graphics.newImage('graphics/fish/Rare56.png'),
+        ['Rare4'] = love.graphics.newImage('graphics/fish/Rare78.png'),
+        ['Rare5'] = love.graphics.newImage('graphics/fish/Rare910.png')
     }
 
     -- Quads we will generate for all of our textures; Quads allow us
@@ -78,7 +86,12 @@ function love.load()
         ['Common2'] = GenerateQuads(gTextures['Common2'], FISH_TYPE_DATA_TABLE['Common2'][2], FISH_TYPE_DATA_TABLE['Common2'][3]),
         ['Common3'] = GenerateQuads(gTextures['Common3'], FISH_TYPE_DATA_TABLE['Common3'][2], FISH_TYPE_DATA_TABLE['Common3'][3]),
         ['Common4'] = GenerateQuads(gTextures['Common4'], FISH_TYPE_DATA_TABLE['Common4'][2], FISH_TYPE_DATA_TABLE['Common4'][3]),
-        ['Common5'] = GenerateQuads(gTextures['Common5'], FISH_TYPE_DATA_TABLE['Common5'][2], FISH_TYPE_DATA_TABLE['Common5'][3])
+        ['Common5'] = GenerateQuads(gTextures['Common5'], FISH_TYPE_DATA_TABLE['Common5'][2], FISH_TYPE_DATA_TABLE['Common5'][3]),
+        ['Rare1'] = GenerateQuads(gTextures['Rare1'], FISH_TYPE_DATA_TABLE['Rare1'][2], FISH_TYPE_DATA_TABLE['Rare1'][3]),
+        ['Rare2'] = GenerateQuads(gTextures['Rare2'], FISH_TYPE_DATA_TABLE['Rare2'][2], FISH_TYPE_DATA_TABLE['Rare2'][3]),
+        ['Rare3'] = GenerateQuads(gTextures['Rare3'], FISH_TYPE_DATA_TABLE['Rare3'][2], FISH_TYPE_DATA_TABLE['Rare3'][3]),
+        ['Rare4'] = GenerateQuads(gTextures['Rare4'], FISH_TYPE_DATA_TABLE['Rare4'][2], FISH_TYPE_DATA_TABLE['Rare4'][3]),
+        ['Rare5'] = GenerateQuads(gTextures['Rare5'], FISH_TYPE_DATA_TABLE['Rare5'][2], FISH_TYPE_DATA_TABLE['Rare5'][3])
     }
 
     -- initialize our virtual resolution, which will be rendered within our
@@ -339,6 +352,20 @@ function initializeShopFile()
 end
 
 
+function updateCurrency(FishInPlay) 
+    local diff = os.time() - lastRecordedTime
+
+    if (diff >= 1) then
+        currCurrency = currCurrency + 1
+        for k, f in pairs(FishInPlay) do
+            currCurrency = currCurrency + FISH_TYPE_DATA_TABLE[f.skin][1] * diff
+        end
+        lastRecordedTime = os.time()
+    end
+
+end
+
+
 --[[
     Split function retrieved from https://love2d.org/forums/viewtopic.php?f=4&t=85549
 ]]
@@ -365,20 +392,20 @@ function math.randomchoice(t) --Selects a random item from a table
 end
 
 
-function renderCoins(Coins, x, y, limit, align)
+function renderCoins(x, y, limit, align)
     love.graphics.setFont(gFonts['medium'])
 
-    if (Coins < 1000) then
-        love.graphics.printf(tostring(Coins) .. " Coins", x, y, limit, align)
+    if (currCurrency < 1000) then
+        love.graphics.printf(tostring(currCurrency) .. " Coins", x, y, limit, align)
 
-    elseif (Coins >= 1000 and Coins < 1000000) then
-        love.graphics.printf(string.format("%.2f", Coins/1000) .. "K Coins", x, y, limit, align)
+    elseif (currCurrency >= 1000 and currCurrency < 1000000) then
+        love.graphics.printf(string.format("%.2f", currCurrency/1000) .. "K Coins", x, y, limit, align)
 
-    elseif (Coins >= 1000000 and Coins < 1000000000) then
-        love.graphics.printf(string.format("%.2f", Coins/1000000) .. "M Coins", x, y, limit, align)
+    elseif (currCurrency >= 1000000 and currCurrency < 1000000000) then
+        love.graphics.printf(string.format("%.2f", currCurrency/1000000) .. "M Coins", x, y, limit, align)
 
     else
-        love.graphics.printf(string.format("%.2f", Coins/1000000000) .. "B Coins", x, y, limit, align)
+        love.graphics.printf(string.format("%.2f", currCurrency/1000000000) .. "B Coins", x, y, limit, align)
     end
 
 end

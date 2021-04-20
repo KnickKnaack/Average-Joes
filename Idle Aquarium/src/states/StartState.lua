@@ -18,16 +18,17 @@
 StartState = Class{__includes = BaseState}
 
 function StartState:enter(params)
-    self.fishtable = getFishFromFile()
+    self.FishInPlay = getFishFromFile()
     local userData = readUtilFromFile()
-    self.currency = userData[1]
-    self.lastRecordedTime = userData[2]
 
     love.audio.stop()
     gSounds['menu-music']:play()
     gSounds['menu-music']:setLooping(true)
 
     exitButton = Button(10, 10, 20, 10, "Exit", 0, 0, 0, 1)
+    
+    currCurrency = userData[1]
+    lastRecordedTime = userData[2]
 end
 
 function StartState:update(dt)
@@ -39,9 +40,7 @@ function StartState:update(dt)
 
     if love.mouse.isDown(1) then
         params = {}
-        params.fishtable = self.fishtable
-        params.currency = self.currency
-        params.lastRecordedTime = self.lastRecordedTime
+        params.FishInPlay = self.FishInPlay
         gStateMachine:change('viewing', params)
     end
 

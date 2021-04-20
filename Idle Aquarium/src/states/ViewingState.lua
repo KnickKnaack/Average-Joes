@@ -11,8 +11,9 @@ function ViewingState:enter(params)
 
     self.currCurrency = params.currency
     
-    self.FishInPlay = params.fishtable
+    self.FishInPlay = params.FishInPlay
     self.lastRecordedTime = params.lastRecordedTime
+    self.test = math
 
     love.audio.stop()
     gSounds['play-music']:play()
@@ -36,14 +37,7 @@ function ViewingState:update(dt)
         f:update(dt)
     end
 
-    self.diff = os.time() - self.lastRecordedTime
-
-    if (self.diff >= 1) then
-        for k, f in pairs(self.FishInPlay) do
-            self.currCurrency = self.currCurrency + FISH_TYPE_DATA_TABLE[f.skin][1] * self.diff
-        end
-        self.lastRecordedTime = os.time()
-    end
+    updateCurrency(self.FishInPlay)
 
     if love.keyboard.wasPressed('=') then
         table.insert(self.FishInPlay, Fish({math.randomchoice(FISH_TYPE_DATA_TABLE), math.random(4)}))
@@ -59,36 +53,32 @@ function ViewingState:update(dt)
 
     if love.keyboard.wasPressed('s') then
         params = {}
-        params.fishtable = self.FishInPlay
-        params.currency = self.currCurrency
-        params.lastRecordedTime = self.lastRecordedTime
+        params.FishInPlay = self.FishInPlay
         gStateMachine:change('shop', params)
+    end
+
+    if love.keyboard.wasPressed('/') then
+        currCurrency = 0
     end
     
     if love.keyboard.wasPressed('m') then
         params = {}
-        params.fishtable = self.FishInPlay
-        params.currency = self.currCurrency
-        params.lastRecordedTime = self.lastRecordedTime
+        params.FishInPlay = self.FishInPlay
         gStateMachine:change('minigame', params)
     end
 
     if love.keyboard.wasPressed('o') then
         params = {}
-        params.fishtable = self.FishInPlay
-        params.currency = self.currCurrency
-        params.lastRecordedTime = os.time()
+        params.FishInPlay = self.FishInPlay
         params.callingState = 'viewing'
         gStateMachine:change('settings', params)
     end
 
     if love.keyboard.wasPressed('escape') then
         writeFishToFile(self.FishInPlay)
-        writeUtilToFile({self.currCurrency, self.lastRecordedTime})
+        writeUtilToFile({currCurrency, lastRecordedTime})
         params = {}
-        params.fishtable = self.FishInPlay
-        params.currency = self.currCurrency
-        params.lastRecordedTime = os.time()
+        params.FishInPlay = self.FishInPlay
         gStateMachine:change('start', params)
     end
 
@@ -101,5 +91,5 @@ function ViewingState:render()
 
     love.graphics.setFont(gFonts['medium'])
 
-    renderCoins(self.currCurrency, 5, VIRTUAL_HEIGHT - 20, VIRTUAL_WIDTH, 'left')
+    renderCoins(5, VIRTUAL_HEIGHT - 20, VIRTUAL_WIDTH, 'left')
 end

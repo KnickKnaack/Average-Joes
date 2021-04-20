@@ -2,35 +2,23 @@
 ShopState = Class{__includes = BaseState}
 
 function ShopState:enter(params) 
-    self.FishInPlay = params.fishtable
-    self.currCurrency = params.currency
-    self.lastRecordedTime = params.lastRecordedTime
+    self.FishInPlay = params.FishInPlay
 end
 
 function ShopState:update(dt)
-    self.diff = os.time() - self.lastRecordedTime
 
-    if (self.diff >= 1) then
-        for k, f in pairs(self.FishInPlay) do
-            self.currCurrency = self.currCurrency + FISH_TYPE_DATA_TABLE[f.skin][1] * self.diff
-        end
-        self.lastRecordedTime = os.time()
-    end
+    updateCurrency(self.FishInPlay)
 
     if love.keyboard.wasPressed('o') then
         params = {}
-        params.fishtable = self.FishInPlay
-        params.currency = self.currCurrency
-        params.lastRecordedTime = self.lastRecordedTime
+        params.FishInPlay = self.FishInPlay
         params.callingState = 'shop'
         gStateMachine:change('settings', params)
     end
 
     if love.keyboard.wasPressed('escape') then
         params = {}
-        params.fishtable = self.FishInPlay
-        params.currency = self.currCurrency
-        params.lastRecordedTime = self.lastRecordedTime
+        params.FishInPlay = self.FishInPlay
         gStateMachine:change('viewing', params)
     end
     
@@ -42,25 +30,25 @@ function ShopState:update(dt)
         x, y = love.mouse.getPosition()
         if(x > widthScaleFactor*VIRTUAL_WIDTH/10 and x < widthScaleFactor*(VIRTUAL_WIDTH - VIRTUAL_WIDTH/10)) then
             if(y > 42*heightScaleFactor and y < 82*heightScaleFactor) then
-                if(self.currCurrency > tonumber(item1[1])) then
+                if(currCurrency > tonumber(item1[1])) then
                     if(not item1Purchased) then
-                        self.currCurrency = self.currCurrency - tonumber(item1[1])
+                        currCurrency = currCurrency - tonumber(item1[1])
                     end
                     item1Purchased = true
                 end
                 self:renderItems()
             elseif(y > 92*heightScaleFactor and y < 132*heightScaleFactor) then
-                if(self.currCurrency > tonumber(item2[1])) then
+                if(currCurrency > tonumber(item2[1])) then
                     if(not item2Purchased) then
-                        self.currCurrency = self.currCurrency - tonumber(item2[1])
+                        currCurrency = currCurrency - tonumber(item2[1])
                     end
                     item2Purchased = true
                 end
                 self:renderItems()
             elseif(y > 142*heightScaleFactor and y < 182*heightScaleFactor) then
-                if(self.currCurrency > tonumber(item3[1])) then
+                if(currCurrency > tonumber(item3[1])) then
                     if(not item3Purchased) then
-                        self.currCurrency = self.currCurrency - tonumber(item3[1])
+                        currCurrency = currCurrency - tonumber(item3[1])
                     end
                     item3Purchased = true
                 end
@@ -74,7 +62,7 @@ function ShopState:render()
     love.graphics.setFont(gFonts['medium'])
     love.graphics.printf("SHOP", 0, 10, VIRTUAL_WIDTH, 'center')
 
-    renderCoins(self.currCurrency, 5, VIRTUAL_HEIGHT - 20, VIRTUAL_WIDTH, 'left')
+    renderCoins(5, VIRTUAL_HEIGHT - 20, VIRTUAL_WIDTH, 'left')
 
     if (not love.filesystem.getInfo("FullShopList.csv")) then
         initializeShopFile()
