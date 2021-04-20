@@ -29,6 +29,9 @@ require 'src/Dependencies'
 mouse = {}
 fish = {'src/Fish'}
 
+lastRecordedTime = 0
+currCurrency = 0
+
 --[[
     Called just once at the beginning of the game; used to set up
     game objects, variables, etc. and prepare the game world.
@@ -363,6 +366,20 @@ function initializeShopFile()
 end
 
 
+function updateCurrency(FishInPlay) 
+    local diff = os.time() - lastRecordedTime
+
+    if (diff >= 1) then
+        currCurrency = currCurrency + 1
+        for k, f in pairs(FishInPlay) do
+            currCurrency = currCurrency + FISH_TYPE_DATA_TABLE[f.skin][1] * diff
+        end
+        lastRecordedTime = os.time()
+    end
+
+end
+
+
 --[[
     Split function retrieved from https://love2d.org/forums/viewtopic.php?f=4&t=85549
 ]]
@@ -389,20 +406,20 @@ function math.randomchoice(t) --Selects a random item from a table
 end
 
 
-function renderCoins(Coins, x, y, limit, align)
+function renderCoins(x, y, limit, align)
     love.graphics.setFont(gFonts['medium'])
 
-    if (Coins < 1000) then
-        love.graphics.printf(tostring(Coins) .. " Coins", x, y, limit, align)
+    if (currCurrency < 1000) then
+        love.graphics.printf(tostring(currCurrency) .. " Coins", x, y, limit, align)
 
-    elseif (Coins >= 1000 and Coins < 1000000) then
-        love.graphics.printf(string.format("%.2f", Coins/1000) .. "K Coins", x, y, limit, align)
+    elseif (currCurrency >= 1000 and currCurrency < 1000000) then
+        love.graphics.printf(string.format("%.2f", currCurrency/1000) .. "K Coins", x, y, limit, align)
 
-    elseif (Coins >= 1000000 and Coins < 1000000000) then
-        love.graphics.printf(string.format("%.2f", Coins/1000000) .. "M Coins", x, y, limit, align)
+    elseif (currCurrency >= 1000000 and currCurrency < 1000000000) then
+        love.graphics.printf(string.format("%.2f", currCurrency/1000000) .. "M Coins", x, y, limit, align)
 
     else
-        love.graphics.printf(string.format("%.2f", Coins/1000000000) .. "B Coins", x, y, limit, align)
+        love.graphics.printf(string.format("%.2f", currCurrency/1000000000) .. "B Coins", x, y, limit, align)
     end
 
 end

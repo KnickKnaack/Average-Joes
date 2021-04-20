@@ -2,9 +2,7 @@
 SettingsState = Class{__includes = BaseState}
 
 function SettingsState:enter(params) 
-    self.FishInPlay = params.fishtable
-    self.currCurrency = params.currency
-    self.lastRecordedTime = params.lastRecordedTime
+    self.FishInPlay = params.FishInPlay
     self.callingState = params.callingState
     
     -- volume slider instantiation
@@ -18,9 +16,7 @@ function SettingsState:update(dt)
 
     if love.keyboard.wasPressed('escape') then
         params = {}
-        params.fishtable = self.FishInPlay
-        params.currency = self.currCurrency
-        params.lastRecordedTime = self.lastRecordedTime
+        params.FishInPlay = self.FishInPlay
         gStateMachine:change(self.callingState, params)
     end
 end

@@ -10,9 +10,7 @@
 MiniGameState = Class{__includes = BaseState}
 
 function MiniGameState:enter(params)
-    self.FishInPlay = params.fishtable
-    self.currCurrency = params.currency
-    self.lastRecordedTime = params.lastRecordedTime
+    self.FishInPlay = params.FishInPlay
     
     remainingTime = 15
     gameOver = false
@@ -24,18 +22,14 @@ function MiniGameState:update(dt)
   -- *escape = takes you back to viewing area
     if love.keyboard.wasPressed('o') then
         params = {}
-        params.fishtable = self.FishInPlay
-        params.currency = self.currCurrency
-        params.lastRecordedTime = self.lastRecordedTime
-        params.callingState = 'shop'
+        params.FishInPlay = self.FishInPlay
+        params.callingState = 'minigame'
         gStateMachine:change('settings', params)
     end
     
     if love.keyboard.wasPressed('escape') then
       params = {}
-      params.fishtable = self.FishInPlay
-      params.currency = self.currCurrency
-      params.lastRecordedTime = self.lastRecordedTime
+      params.FishInPlay = self.FishInPlay
       gStateMachine:change('viewing', params)
     end
     
@@ -48,7 +42,7 @@ function MiniGameState:update(dt)
     fishY = fish.y
     
     if love.mouse.isDown(1) then -- and x == fishX and y == fishY then
-      self.currCurrency = self.currCurrency + 50;
+      currCurrency = currCurrency + 50;
       love.audio.play(gSounds['brick-hit-1'])
     end
     
@@ -80,7 +74,7 @@ function MiniGameState:render()
       f:render()
     end
     
-    renderCoins(self.currCurrency, 5, VIRTUAL_HEIGHT - 20, VIRTUAL_WIDTH, 'left')
+    renderCoins(5, VIRTUAL_HEIGHT - 20, VIRTUAL_WIDTH, 'left')
     
     if (gameOver == true) then
       love.graphics.clear()
