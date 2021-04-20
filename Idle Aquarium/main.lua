@@ -44,7 +44,10 @@ function love.load()
 
     -- set the application title bar
     love.window.setTitle('Idle Aquarium')
-
+    
+    -- set default volume to .25
+    love.audio.setVolume(0.25)
+    
     -- initialize our nice-looking retro text fonts
     gFonts = {
         ['Title'] = love.graphics.newFont('fonts/APOLLO.otf', 38),
@@ -119,29 +122,12 @@ function love.load()
     -- 5. 'victory' (the current level is over, with a victory jingle)
     -- 6. 'game-over' (the player has lost; display score and allow restart)
     gStateMachine = StateMachine ({
-        ['start'] = function()
-          love.audio.setVolume(0.25)
-          love.audio.stop()
-          gSounds['menu-music']:play()
-          gSounds['menu-music']:setLooping(true)
-          return StartState()
-        end,
-        ['viewing'] = function()
-          love.audio.stop()
-          gSounds['play-music']:play()
-          gSounds['play-music']:setLooping(true)
-          return ViewingState()
-        end,
+        ['start'] = function() return StartState() end,
+        ['viewing'] = function() return ViewingState() end,
         ['shop'] = function() return ShopState() end,
         ['settings'] = function() return SettingsState() end,
-        
-        ['minigame'] = function()
-          love.audio.stop()
-          gSounds['music']:play()
-          gSounds['music']:setLooping(true)
-          -- add code to change background
-          return MiniGameState()
-        end
+        -- add code to change background
+        ['minigame'] = function() return MiniGameState() end
     })
     gStateMachine:change('start')
     

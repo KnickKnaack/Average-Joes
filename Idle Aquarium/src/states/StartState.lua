@@ -22,10 +22,17 @@ function StartState:enter(params)
     local userData = readUtilFromFile()
     self.currency = userData[1]
     self.lastRecordedTime = userData[2]
+
+    love.audio.stop()
+    gSounds['menu-music']:play()
+    gSounds['menu-music']:setLooping(true)
+
+    exitButton = Button(10, 10, 20, 10, "Exit", 0, 0, 0, 1)
 end
 
 function StartState:update(dt)
     -- we no longer have this globally, so include here
+    
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
     end
@@ -56,6 +63,7 @@ function StartState:render()
     love.graphics.setFont(gFonts['medium'])
     love.graphics.printf("Click anywhere to play", 0, (VIRTUAL_HEIGHT / 3) * 2,
         VIRTUAL_WIDTH, 'center')
-
+    
+    exitButton:draw()
     
 end

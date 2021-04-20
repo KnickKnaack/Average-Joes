@@ -39,7 +39,7 @@ Slider = Class{}
 --[[
     x: x position of top left corner
     y: y position of top left corner
-    length = total length of slider (horizontal)
+    width = total width of slider (horizontal)
     value = current value held
     min = minimum possible value
     max = maximum possible value
@@ -98,6 +98,7 @@ function Slider:update()
 end
 
 function Slider:draw()
+    love.graphics.setColor(1, 1, 1)
     love.graphics.rectangle('line', self.x, self.y, self.width, self.height)
     love.graphics.draw(gTextures['Common1'], gFrames['Common1'][3], self.knobX - 6, self.y)
 

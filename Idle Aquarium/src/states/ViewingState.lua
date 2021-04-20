@@ -14,7 +14,9 @@ function ViewingState:enter(params)
     self.FishInPlay = params.fishtable
     self.lastRecordedTime = params.lastRecordedTime
 
-    self.test = math
+    love.audio.stop()
+    gSounds['play-music']:play()
+    gSounds['play-music']:setLooping(true)
 
     --[[
     -- CHANGE params.lastRecordedTime WHEN FILE MANIP IS WORKING --

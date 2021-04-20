@@ -38,3 +38,6 @@ require 'src/states/MiniGameState'
 
 -- slider object used for volume control in settings state
 require 'src/Slider'
+
+-- button objects used throughout game
+require 'src/Button'
