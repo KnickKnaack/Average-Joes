@@ -48,7 +48,7 @@ function ViewingState:update(dt)
     end
 
     if love.keyboard.wasPressed('p') then
-        self.currCurrency = self.currCurrency + 1000000
+        currCurrency = currCurrency + 1000000
     end
 
     if love.keyboard.wasPressed('s') then

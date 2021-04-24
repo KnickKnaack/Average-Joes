@@ -7,18 +7,13 @@ function SettingsState:enter(params)
     
     -- volume slider instantiation
     volumeSlider = Slider(162, 55, 100, love.audio.getVolume(), 0, 1.0, function (v) love.audio.setVolume(v) end)
+    retButton = Button(10, 10, 35, 10, "Return", SettingsState.ret, 0, 0, 0, 1)
 end
 
 function SettingsState:update(dt)
-    
-    -- update slider
+    -- update slider and button
     volumeSlider:update()
-
-    if love.keyboard.wasPressed('escape') then
-        params = {}
-        params.FishInPlay = self.FishInPlay
-        gStateMachine:change(self.callingState, params)
-    end
+    retButton:update()
 end
 
 function SettingsState:render()
@@ -32,4 +27,9 @@ function SettingsState:render()
     love.graphics.printf("VOLUME", 0, 45, VIRTUAL_WIDTH, 'center')
     love.graphics.setLineWidth(1)
     volumeSlider:draw()
+    retButton:draw()
+end
+
+function SettingsState:ret()
+    gStateMachine:change(params.callingState, params)
 end
