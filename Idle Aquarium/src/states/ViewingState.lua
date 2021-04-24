@@ -57,6 +57,14 @@ function ViewingState:update(dt)
         gStateMachine:change('shop', params)
     end
 
+
+    if love.keyboard.wasPressed('b') then
+        params = {}
+        params.FishInPlay = self.FishInPlay
+        gStateMachine:change('breeding', params)
+    end
+
+
     if love.keyboard.wasPressed('/') then
         currCurrency = 0
     end
