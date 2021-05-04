@@ -3,23 +3,19 @@ ShopState = Class{__includes = BaseState}
 
 function ShopState:enter(params) 
     self.FishInPlay = params.FishInPlay
+    escButton = Button(10, 10, 36, 10, "Escape", function () self:callViewing() end, 0, 0, 0, 1)
 end
 
 function ShopState:update(dt)
 
     updateCurrency(self.FishInPlay)
+    escButton:update()
 
     if love.keyboard.wasPressed('o') then
         params = {}
         params.FishInPlay = self.FishInPlay
         params.callingState = 'shop'
         gStateMachine:change('settings', params)
-    end
-
-    if love.keyboard.wasPressed('escape') then
-        params = {}
-        params.FishInPlay = self.FishInPlay
-        gStateMachine:change('viewing', params)
     end
     
     -- Check if item is clicked
@@ -76,7 +72,7 @@ function ShopState:render()
     end
 
     self:renderItems()
-
+    escButton:draw()
 
 end
 
@@ -157,4 +153,10 @@ function ShopState:renderItems()
             love.graphics.draw(gTextures[item3[3]], VIRTUAL_WIDTH/10 + 5, 145, 0, 40/itemWidth, 30/itemHeight)
             love.graphics.setColor(1, 1, 1);
         end
+end
+
+function ShopState:callViewing()
+    params = {}
+    params.FishInPlay = self.FishInPlay
+    gStateMachine:change('viewing', params)
 end

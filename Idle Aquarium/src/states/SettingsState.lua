@@ -7,7 +7,7 @@ function SettingsState:enter(params)
     
     -- volume slider instantiation
     volumeSlider = Slider(162, 55, 100, love.audio.getVolume(), 0, 1.0, function (v) love.audio.setVolume(v) end)
-    retButton = Button(10, 10, 35, 10, "Return", SettingsState.ret, 0, 0, 0, 1)
+    retButton = Button(10, 10, 35, 10, "Escape", SettingsState.ret, 0, 0, 0, 1)
 end
 
 function SettingsState:update(dt)
