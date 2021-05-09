@@ -71,12 +71,15 @@ function love.load()
         ['Common3'] = love.graphics.newImage('graphics/fish/Common_9-12.png'),
         ['Common4'] = love.graphics.newImage('graphics/fish/Common_13-16.png'),
         ['Common5'] = love.graphics.newImage('graphics/fish/Common_17-20.png'),
-        ['Coral'] = love.graphics.newImage('graphics/decoration/Coral.png'),
         ['Rare1'] = love.graphics.newImage('graphics/fish/Rare12.png'),
         ['Rare2'] = love.graphics.newImage('graphics/fish/Rare34.png'),
         ['Rare3'] = love.graphics.newImage('graphics/fish/Rare56.png'),
         ['Rare4'] = love.graphics.newImage('graphics/fish/Rare78.png'),
-        ['Rare5'] = love.graphics.newImage('graphics/fish/Rare910.png')
+        ['Rare5'] = love.graphics.newImage('graphics/fish/Rare910.png'),
+        ['Coral'] = love.graphics.newImage('graphics/decoration/Coral.png'),
+        ['Castle'] = love.graphics.newImage('graphics/decoration/Sand_Castle.png'),
+        ['Seaweed'] = love.graphics.newImage('graphics/decoration/Seaweed.png'),
+        ['Treasure'] = love.graphics.newImage('graphics/decoration/Treasure_Chest.png')
     }
 
     -- Quads we will generate for all of our textures; Quads allow us
@@ -345,11 +348,50 @@ function writeUtilToFile(data)
 end
 
 
-function initializeShopFile()
-    itemList = "Common Fish 1,1000,Earns 5 coins/second,Common1,3\n"
-    itemList = itemList .. "New Background,2000,Offers bonus to clownfish.,background1\n"
-    itemList = itemList .. "Coral decoration,500,Earns 15 coins/second,Coral\n"
-    love.filesystem.write("FullShopList.csv", itemList)
+function initializeShopFiles()
+    itemList = "Common Fish 1,100,Earns 1 coins/second,Common1,1\n"
+    itemList = itemList .. "Common Fish 2,100,Earns 1 coins/second,Common1,2\n"
+    itemList = itemList .. "Common Fish 3,100,Earns 1 coins/second,Common1,3\n"
+    itemList = itemList .. "Common Fish 4,100,Earns 1 coins/second,Common1,4\n"
+    itemList = itemList .. "Common Fish 5,200,Earns 2 coins/second,Common2,1\n"
+    itemList = itemList .. "Common Fish 6,20,Earns 2 coins/second,Common2,2\n"
+    itemList = itemList .. "Common Fish 7,200,Earns 2 coins/second,Common2,3\n"
+    itemList = itemList .. "Common Fish 8,200,Earns 2 coins/second,Common2,4\n"
+    itemList = itemList .. "Common Fish 9,300,Earns 3 coins/second,Common3,1\n"
+    itemList = itemList .. "Common Fish 10,300,Earns 3 coins/second,Common3,2\n"
+    itemList = itemList .. "Common Fish 11,300,Earns 3 coins/second,Common3,3\n"
+    itemList = itemList .. "Common Fish 12,300,Earns 3 coins/second,Common3,4\n"
+    itemList = itemList .. "Common Fish 13,400,Earns 4 coins/second,Common4,1\n"
+    itemList = itemList .. "Common Fish 14,400,Earns 4 coins/second,Common4,2\n"
+    itemList = itemList .. "Common Fish 15,400,Earns 4 coins/second,Common4,3\n"
+    itemList = itemList .. "Common Fish 16,400,Earns 4 coins/second,Common4,4\n"
+    itemList = itemList .. "Common Fish 17,500,Earns 5 coins/second,Common5,1\n"
+    itemList = itemList .. "Common Fish 18,500,Earns 5 coins/second,Common5,2\n"
+    itemList = itemList .. "Common Fish 19,500,Earns 5 coins/second,Common5,3\n"
+    itemList = itemList .. "Common Fish 20,500,Earns 5 coins/second,Common5,4\n"
+    itemList = itemList .. "Rare Fish 1,1000,Earns 6 coins/second,Rare1,1\n"
+    itemList = itemList .. "Rare Fish 2,1000,Earns 6 coins/second,Rare1,2\n"
+    itemList = itemList .. "Rare Fish 3,1500,Earns 7 coins/second,Rare2,1\n"
+    itemList = itemList .. "Rare Fish 4,1500,Earns 7 coins/second,Rare2,2\n"
+    itemList = itemList .. "Rare Fish 5,2000,Earns 8 coins/second,Rare3,1\n"
+    itemList = itemList .. "Rare Fish 6,2000,Earns 8 coins/second,Rare3,2\n"
+    itemList = itemList .. "Rare Fish 7,2500,Earns 9 coins/second,Rare4,1\n"
+    itemList = itemList .. "Rare Fish 8,2500,Earns 9 coins/second,Rare4,2\n"
+    itemList = itemList .. "Rare Fish 9,3000,Earns 10 coins/second,Rare5,1\n"
+    itemList = itemList .. "Rare Fish 10,3000,Earns 10 coins/second,Rare5,2\n"
+    love.filesystem.write("FishShopList.csv", itemList)
+
+    itemList = "New Background,500,When purchased the current background will be changed.,background\n"
+    itemList = itemList .. "New Background,1000,When purchased the current background will be changed.,background1\n"
+    itemList = itemList .. "New Background,2000,When purchased the current background will be changed.,background2\n"
+    itemList = itemList .. "New Background,5000,When purchased the current background will be changed.,background3\n"
+    love.filesystem.write("BackgroundShopList.csv", itemList)
+
+    itemList = "Coral Decoration,4000,Earns 15 coins/second,Coral\n"
+    itemList = itemList .. "Sand Castle Decoration,4500,Earns 20 coins/second,Castle\n"
+    itemList = itemList .. "Seaweed Decoration,5000,Earns 25 coins/second,Seaweed\n"
+    itemList = itemList .. "Treasure Chest Decoration,5500,Earns 30 coins/second,Treasure\n"
+    love.filesystem.write("DecorationShopList.csv", itemList)
 end
 
 
@@ -357,7 +399,7 @@ function updateCurrency(FishInPlay)
     local diff = os.time() - lastRecordedTime
 
     if (diff >= 1) then
-        currCurrency = currCurrency + 1
+        currCurrency = currCurrency
         for k, f in pairs(FishInPlay) do
             currCurrency = currCurrency + FISH_TYPE_DATA_TABLE[f.skin][1] * diff
         end
