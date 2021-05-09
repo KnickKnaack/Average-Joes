@@ -27,25 +27,27 @@ function ShopState:update(dt)
         if(x > widthScaleFactor*VIRTUAL_WIDTH/10 and x < widthScaleFactor*(VIRTUAL_WIDTH - VIRTUAL_WIDTH/10)) then
             if(y > 42*heightScaleFactor and y < 82*heightScaleFactor) then
                 if(currCurrency > item1.price) then
-                    if(not item1Purchased) then
+                    if(item1Purchased == 0) then
                         currCurrency = currCurrency - item1.price
-                        item1Purchased = true
+                        table.insert(self.FishInPlay, Fish({item1.texture, item1.subTexture}))
+                        item1Purchased = 1
                     end
                 end
                 self:renderItems()
             elseif(y > 92*heightScaleFactor and y < 132*heightScaleFactor) then
                 if(currCurrency > item2.price) then
-                    if(not item2Purchased) then
+                    if(item2Purchased == 0) then
                         currCurrency = currCurrency - item2.price
-                        item2Purchased = true
+                        currBackground = item2.texture
+                        item2Purchased = 1
                     end
                 end
                 self:renderItems()
             elseif(y > 142*heightScaleFactor and y < 182*heightScaleFactor) then
                 if(currCurrency > item3.price) then
-                    if(not item3Purchased) then
+                    if(item3Purchased == 0) then
                         currCurrency = currCurrency - item3.price
-                        item3Purchased = true
+                        item3Purchased = 1
                     end
                 end
                 self:renderItems()
@@ -60,48 +62,6 @@ function ShopState:render()
 
     renderCoins(5, VIRTUAL_HEIGHT - 20, VIRTUAL_WIDTH, 'left')
 
-    if (not love.filesystem.getInfo("BackgroundShopList.csv") and not love.filesystem.getInfo("DecorationShopList.csv") and not love.filesystem.getInfo("FishShopList.csv")) then
-        initializeShopFiles()
-    end
-    
-    self.contents = {}
-    self.s = ""
-    if (not love.filesystem.getInfo("CurrentShopItems.csv")) then
-        for line in love.filesystem.lines("FishShopList.csv") do
-            table.insert(self.contents, line)
-        end
-
-        self.s = self.contents[math.random(#self.contents)] .. "\n"
-
-        self.contents = {}
-        for line in love.filesystem.lines("BackgroundShopList.csv") do
-            table.insert(self.contents, line)
-        end
-
-        self.s = self.s .. self.contents[math.random(#self.contents)] .. "\n"
-
-        self.contents = {}
-        for line in love.filesystem.lines("DecorationShopList.csv") do
-            table.insert(self.contents, line)
-        end
- 
-        self.s = self.s .. self.contents[math.random(#self.contents)] .. "\n"
-
-        love.filesystem.write('CurrentShopItems.csv', self.s)
-    end
-
-
-    self.lines = {}
-    i = 0
-    for line in love.filesystem.lines("CurrentShopItems.csv") do
-        table.insert(self.lines, i, line)
-        i = i + 1
-    end
-
-    item1 = Item(self.lines[0])
-    item2 = Item(self.lines[1])
-    item3 = Item(self.lines[2])
-
     self:renderItems()
     escButton:draw()
 
@@ -110,12 +70,13 @@ end
 
 function ShopState:renderItems()
         -- FIRST ITEM
-        if(not item1Purchased) then
+        if(item1Purchased == 0) then
             love.graphics.setColor(64/255, 207/255, 199/255, 0.55)
             love.graphics.rectangle("fill", VIRTUAL_WIDTH/10, 40, VIRTUAL_WIDTH-2*VIRTUAL_WIDTH/10, 40)
             love.graphics.setColor(0, 0, 0)
             love.graphics.printf(item1.name, VIRTUAL_WIDTH/10 + 50, 42, VIRTUAL_WIDTH-VIRTUAL_WIDTH/10 - 5, 'left')
             love.graphics.printf(string.format("%d coins", item1.price), VIRTUAL_WIDTH/10 + 50, 62, VIRTUAL_WIDTH-VIRTUAL_WIDTH/10 - 5, 'left')
+            love.graphics.printf(item1.description, VIRTUAL_WIDTH/10 + 50, 62, VIRTUAL_WIDTH-(2*VIRTUAL_WIDTH/10 + 55), 'right')
             love.graphics.setColor(1, 1, 1);
             love.graphics.draw(gTextures[item1.texture], gFrames[item1.texture][item1.subTexture], VIRTUAL_WIDTH/10 + 5, 45, 0, 40/item1.width, 30/item1.height)
         else
@@ -130,12 +91,13 @@ function ShopState:renderItems()
     
     
         -- SECOND ITEM
-        if(not item2Purchased) then
+        if(item2Purchased == 0) then
             love.graphics.setColor(64/255, 207/255, 199/255, 0.55)
             love.graphics.rectangle("fill", VIRTUAL_WIDTH/10, 90, VIRTUAL_WIDTH-2*VIRTUAL_WIDTH/10, 40)
             love.graphics.setColor(0, 0, 0)
             love.graphics.printf(item2.name, VIRTUAL_WIDTH/10 + 50, 92, VIRTUAL_WIDTH-VIRTUAL_WIDTH/10 - 5, 'left')
             love.graphics.printf(string.format("%d coins", item2.price), VIRTUAL_WIDTH/10 + 50, 112, VIRTUAL_WIDTH-VIRTUAL_WIDTH/10 - 5, 'left')
+            love.graphics.printf(item2.description, VIRTUAL_WIDTH/10 + 50, 112, VIRTUAL_WIDTH-(2*VIRTUAL_WIDTH/10 + 55), 'right')
             love.graphics.setColor(1, 1, 1);
             love.graphics.draw(gTextures[item2.texture], VIRTUAL_WIDTH/10 + 5, 95, 0, 40/item2.width, 30/item2.height)
         else
@@ -149,12 +111,13 @@ function ShopState:renderItems()
         end
     
         -- THIRD ITEM
-        if(not item3Purchased) then
+        if(item3Purchased == 0) then
             love.graphics.setColor(64/255, 207/255, 199/255, 0.55)
             love.graphics.rectangle("fill", VIRTUAL_WIDTH/10, 140, VIRTUAL_WIDTH-2*VIRTUAL_WIDTH/10, 40)
             love.graphics.setColor(0, 0, 0)
             love.graphics.printf(item3.name, VIRTUAL_WIDTH/10 + 50, 142, VIRTUAL_WIDTH-VIRTUAL_WIDTH/10 - 5, 'left')
             love.graphics.printf(string.format("%d coins", item3.price), VIRTUAL_WIDTH/10 + 50, 162, VIRTUAL_WIDTH-VIRTUAL_WIDTH/10 - 5, 'left')
+            love.graphics.printf(item3.description, VIRTUAL_WIDTH/10 + 50, 162, VIRTUAL_WIDTH-(2*VIRTUAL_WIDTH/10 + 55), 'right')
             love.graphics.setColor(1, 1, 1);
             love.graphics.draw(gTextures[item3.texture], VIRTUAL_WIDTH/10 + 5, 145, 0, 40/item3.width, 30/item3.height)
         else

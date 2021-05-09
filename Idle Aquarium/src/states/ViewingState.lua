@@ -88,7 +88,7 @@ end
 
 function ViewingState:callStart()
     writeFishToFile(self.FishInPlay)
-    writeUtilToFile({currCurrency, lastRecordedTime})
+    writeUtilToFile({currCurrency, lastRecordedTime, currBackground, item1Purchased, item2Purchased, item3Purchased})
     params = {}
     params.FishInPlay = self.FishInPlay
     gStateMachine:change('start', params)
