@@ -9,7 +9,7 @@ Our Game 'Idle Aquarium' is an Idle game for the desktop where players will be a
 
 
 ### How To Run
-The framework LOVE is needed to run our program. It can be downloaded [here](https://love2d.org/). After downloading, all that needs to be done is to run the .love file. If working with the program folder, then documentation for running the program can be found [here](https://love2d.org/wiki/Getting_Started).
+The framework LOVE is needed to run our program. It can be downloaded [here](https://love2d.org/). After downloading, all that needs to be done is to run the .love file. If working with the program folder, then documentation for running the program can be found [here](https://love2d.org/wiki/Getting_Started). If you wish to view code refer to the development branch.
 
 
 ## References
