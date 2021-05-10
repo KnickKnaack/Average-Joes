@@ -20,6 +20,7 @@ StartState = Class{__includes = BaseState}
 function StartState:enter(params)
     self.FishInPlay = getFishFromFile()
     local userData = readUtilFromFile()
+    ownedDecorations = getDecorationsFromFile()
 
     love.audio.stop()
     gSounds['menu-music']:play()

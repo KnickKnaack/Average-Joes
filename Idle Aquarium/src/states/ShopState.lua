@@ -48,6 +48,8 @@ function ShopState:update(dt)
                     if(item3Purchased == 0) then
                         currCurrency = currCurrency - item3.price
                         item3Purchased = 1
+                        local currDecoration = Decoration(item3.texture)
+                        currDecoration:insert()
                     end
                 end
                 self:renderItems()

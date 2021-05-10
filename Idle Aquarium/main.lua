@@ -468,6 +468,18 @@ function updateCurrency(FishInPlay)
         for k, f in pairs(FishInPlay) do
             currCurrency = currCurrency + FISH_TYPE_DATA_TABLE[f.skin][1] * diff
         end
+
+        for k, data in pairs(ownedDecorations) do
+            if(data.texture == "Coral") then
+                currCurrency = currCurrency + 15
+            elseif (data.texture == "Castle") then
+                currCurrency = currCurrency + 20
+            elseif (data.texture == "Seaweed") then
+                currCurrency = currCurrency + 25
+            elseif (data.texture == "Treasure") then
+                currCurrency = currCurrency + 30
+            end
+        end
         lastRecordedTime = os.time()
     end
 
@@ -520,5 +532,33 @@ end
 
 
 function changeBackground(newBackground)
+
+end
+
+
+function getDecorationsFromFile()
+    local decorationsToReturn = {}
+
+    if (not love.filesystem.getInfo('Decorations.csv')) then
+        love.filesystem.write('Decorations.csv', "")
+    end
+
+
+    for line in love.filesystem.lines('Decorations.csv') do
+        table.insert(decorationsToReturn, Decoration(line))
+    end
+
+    return decorationsToReturn
+end
+
+
+function writeDecorationsToFile(decorations)
+    local toWrite = ''
+    
+    for k, d in pairs(decorations) do
+        toWrite = toWrite .. d.texture .. "\n"
+    end
+
+    love.filesystem.write('Decorations.csv', toWrite)
 
 end

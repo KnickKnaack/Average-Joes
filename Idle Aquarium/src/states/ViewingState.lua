@@ -40,6 +40,8 @@ function ViewingState:update(dt)
     optButton:update()
     shopButton:update()
     miniButton:update()
+
+    self:placeDecorations()
     
     for k, f in pairs(self.FishInPlay) do
         f:update(dt)
@@ -84,11 +86,14 @@ function ViewingState:render()
     optButton:draw()
     shopButton:draw()
     miniButton:draw()
+
+    self:placeDecorations()
 end
 
 function ViewingState:callStart()
     writeFishToFile(self.FishInPlay)
     writeUtilToFile({currCurrency, lastRecordedTime, currBackground, item1Purchased, item2Purchased, item3Purchased})
+    writeDecorationsToFile(ownedDecorations)
     params = {}
     params.FishInPlay = self.FishInPlay
     gStateMachine:change('start', params)
@@ -111,4 +116,19 @@ function ViewingState:callMini()
     params = {}
     params.FishInPlay = self.FishInPlay
     gStateMachine:change('minigame', params)
+end
+
+function ViewingState:placeDecorations()
+    love.graphics.setColor(1, 1, 1)
+    for k, data in pairs(ownedDecorations) do
+        if(data.texture == "Coral") then
+            love.graphics.draw(gTextures[data.texture], VIRTUAL_WIDTH - 213, VIRTUAL_HEIGHT - 35, 0, 1, 1)
+        elseif (data.texture == "Castle") then
+            love.graphics.draw(gTextures[data.texture], VIRTUAL_WIDTH - 166, VIRTUAL_HEIGHT - 27, 0, 1, 1)
+        elseif (data.texture == "Seaweed") then
+            love.graphics.draw(gTextures[data.texture], VIRTUAL_WIDTH - 105, VIRTUAL_HEIGHT - 50, 0, 1, 1)
+        elseif (data.texture == "Treasure") then
+            love.graphics.draw(gTextures[data.texture], VIRTUAL_WIDTH - 70, VIRTUAL_HEIGHT - 37, 0, 1, 1)
+        end
+    end
 end
