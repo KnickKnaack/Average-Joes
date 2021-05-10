@@ -39,7 +39,6 @@ require 'src/states/ViewingState'
 require 'src/states/ShopState'
 require 'src/states/SettingsState'
 require 'src/states/MiniGameState'
-require 'src/states/BreedingState'
 
 -- slider object used for volume control in settings state
 require 'src/Slider'

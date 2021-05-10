@@ -144,8 +144,7 @@ function love.load()
         ['shop'] = function() return ShopState() end,
         ['settings'] = function() return SettingsState() end,
         -- add code to change background
-        ['minigame'] = function() return MiniGameState() end,
-        ['breeding'] = function() return BreedingState() end
+        ['minigame'] = function() return MiniGameState() end
     })
     gStateMachine:change('start')
     

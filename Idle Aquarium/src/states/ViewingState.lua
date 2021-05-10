@@ -58,13 +58,7 @@ function ViewingState:update(dt)
     end
 
     if love.keyboard.wasPressed('p') then
-        currCurrency = currCurrency + 1000000
-    end
-
-    if love.keyboard.wasPressed('b') then
-        params = {}
-        params.FishInPlay = self.FishInPlay
-        gStateMachine:change('breeding', params)
+        currCurrency = currCurrency + 500000
     end
 
     if love.keyboard.wasPressed('/') then
