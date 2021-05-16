@@ -1,4 +1,4 @@
-# Idle Aquarium
+# Index
 
 [Problem Statement](https://knickknaack.github.io/Average-Joes/problem)
 

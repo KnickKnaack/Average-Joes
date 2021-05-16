@@ -6,7 +6,7 @@
 The purpose of our product is to provide an entertaining idle game that people of all ages can play. Our game will be designed to be fun for everyone from all different walks of life. For some people it will offer a way to pass the time, for others it may be a way to relax and get away from the stresses of life. We are also making our game an idle game to make it a product for people who do not always have a lot of free time to dedicate solely to a game. The user can come and go as they please without the stress of not progressing while they aren't in the game. Overall, we want our product to be a source of entertainment and amusement for anybody who wants to play it.
 
 ### 1.2 Scope of Product  
-Our game will include a shop where players can buy certain fish, decorations and environments; a breeding area where players can create new exotic fish through breeding others;
+Our game will include a shop where players can buy certain fish, decorations and environments; a settings state where they can change the game volume; a viewing state, where they can watch their fish and earn currency; and a minigame, where they can earn additional currency.
 
 ### 1.3 Acronyms, Abbreviations, Definitions  
 * "Coins" Refer to the currency that the player can use within the game
@@ -15,12 +15,8 @@ Our game will include a shop where players can buy certain fish, decorations and
 Ogden, C. (2018)  Game framework source code (Unknown version) [source code] https://learning.edx.org/course/course-v1:HarvardX+CS50G+Games/home  
 Prosser, G. (2016) simple-slider source code (Unknown version) [source code]. https://love2d.org/forums/viewtopic.php?t=80711
 
-<br/><br/>
-<br/><br/>
-
-
 ## 2. General Description of Product
-This section contains a longer but not exhaustive description of your product.
+
 
 ### 2.1 Context of Product  
 The player will play the game in any cases that they want to take a break from work or life. They could be anywhere that the game can be run; either on a laptop or desktop.
@@ -41,15 +37,11 @@ Currently our game only runs on a desktop operating system.
 
 ### 2.6 Assumptions and Dependencies
 Our program runs on the LOVE framework for lua. it can be downloaded [here](https://love2d.org/)
-<br/><br/>
-<br/><br/>
-
+<br/>
 
 ## 3. Functional Requirements
 Here is a link to our [User Stories Page](https://knickknaack.github.io/Average-Joes/userstories)
-<br/><br/>
-<br/><br/>
-
+<br/>
 
 ## 4. System and Non-functional Requirements
 
@@ -64,9 +56,7 @@ We currently have no design restrictions
 
 ### 4.4 Quality Requirements
 Our systems quality requirements are that it needs to be visually appealing in addition to a fundamental functionality. Since the main goal for our program is to give the player a place to enjoy watching their aquarium creation, the artwork and movement need to be engaging.
-<br/><br/>
-<br/><br/>
-
+<br/>
 
 ## 5. Appendices
 No appendicies

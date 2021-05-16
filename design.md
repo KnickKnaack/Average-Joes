@@ -20,4 +20,4 @@ Our program is comprised of State classes and Object classes. States are managed
   - allows players to play certain minigames which earn them extra coins
 
 
-The Object classes include Fish and Slider. Buttons, Backgrounds, and decorations will be added in the future. These objects all have x, y coordinates as well as a width and height variable for placement and rendering on the screen. They also have elements specific to each that allow full functionality (i.e., the fish hold skin and color variables for what type of Fish to print).
+The Object classes include Fish, Slider, and Button. Classes to manage the backgrounds and decorations will be added in the future. These objects all have x, y coordinates as well as a width and height variable for placement and rendering on the screen. They also have elements specific to each that allow full functionality (i.e., the fish hold skin and color variables for what type of Fish to print). Both Slider and Volume also have parameters which represent the function or action called when the user interacts with them.

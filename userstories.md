@@ -1,6 +1,6 @@
 # User Stories
 
-### 1: Have multiple tanks to contain fish
+### 1: Future goal: Have multiple tanks to contain fish
 As a try hard player, I would love to be able to have multiple fish tanks at a time to hold a more variety of fish.
 
 Elaboration: User should be able to have multiple tanks where they can keep their fish simultaneously. This would also mean that there will be an increase in income. It is reasonable because the prices for resources are exponential. Moreover, having multiple fish tanks will make the game look and feel fresher and it is what players like me would love to experience.
@@ -15,7 +15,7 @@ Acceptance Test:
 * Set the maximum amount of tanks a player can own.
 * Test the arrow buttons, test the currencies generated in each tank.
 
-### 2: Have different fish
+### 2: Future goal: Have different fish
 As a user, I want to have different fish available to use so there is large variety of different kinds of fish in the tank.
 
 Elaboration: Users should be able to obtain new and different fish through means of breeding or purchasing them to add new fish in their personal aquarium(s).
@@ -81,7 +81,7 @@ Effort Estimation: 1 person-hours
 
 Acceptance Test: After completion of game, tester will thoroughly navigate through each and every menu, as well as allowing the game to idly play, and make sure this game is suitable for play by all age groups. This Will be achieved through use of positive and non mature game/menu music as well as realistic positive fish and backgrounds. Mini games and play will also be suitable for all ages and exclude any mature material.
 
-### 8: More Prizes for Events
+### 8: Future goal: More Prizes for Events
 As a complete F2P player that needs to save up my resources to get the items I desire, I would love to have rewards from mini game outside from just gems.
 
 Elaboration: User would be able to acquire a random species of fish from different rarities depending on the difficulty of the events.
